@@ -6,7 +6,7 @@ import unittest
 import requests
 
 
-class Sold(unittest.TestCase):
+class TuAnChe(unittest.TestCase):
 
     def setUp(self):
         self.base_url = 'http://t.umapi.tuanche.com/'
@@ -41,8 +41,24 @@ class Sold(unittest.TestCase):
         result = r.json()
         self.assertEqual(result.get('code'), 10000)
 
-    def test_1(self):
-        pass
+    def test_top_brand(self):
+        u"""获取每个城市下的热门品牌"""
+        self.Interface = '/basedata/topBrand'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_get_same_price_style(self):
+        u"""获取看了又看车型"""
+        self.Interface = '/basedata/getSamePriceStyle'
+        self.params['cityId'] = 10
+        self.params['styleId'] = 6
+        self.params['brandId'] = 1
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
 
     def tearDown(self):
         pass
