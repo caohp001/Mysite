@@ -6,7 +6,7 @@ import unittest
 import requests
 
 
-class TuAnChe(unittest.TestCase):
+class BaseData(unittest.TestCase):
 
     def setUp(self):
         self.base_url = 'http://t.umapi.tuanche.com/'
@@ -123,6 +123,30 @@ class TuAnChe(unittest.TestCase):
         result = r.json()
         print result
         self.assertEqual(result.get('code'), 10000)
+
+    def test_model_year(self):
+        u"""获取车款年份列表"""
+        self.Interface = '/basedata/modelyear'
+        self.params['styleId'] = '284'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_check_sub_script(self):
+        u"""获取车型是否已订阅"""
+        self.Interface = '/basedata/subscription/checkSubscription'
+        self.params['styleId'] = '12'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        if result.get('code') == 10000:
+            print result.get('msg')
+        elif result.get('code') == 2:
+            print result.get('msg')
+        else:
+            print result.get('msg')
+        # self.assertEqual(result.get('code'), 10000)
 
     def tearDown(self):
         pass
