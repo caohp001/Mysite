@@ -5,12 +5,9 @@ import unittest
 import time
 import os
 import HTMLTestRunner
-from test_case import sold
-from test_case import tuanche
+from test_case import BaseData
 import smtplib
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.image import MIMEImage
 
 
 def send_mail(file_name):
@@ -50,8 +47,7 @@ def get_report():
 
 
 testUnit = unittest.TestSuite()
-testUnit.addTest(unittest.makeSuite(sold.Sold))
-testUnit.addTest(unittest.makeSuite(tuanche.TuAnChe))
+testUnit.addTest(unittest.makeSuite(BaseData.BaseData))
 
 
 now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
@@ -60,7 +56,7 @@ filename = os.getcwd() + '\\report\\' + now + 'result.html'
 fp = file(filename, 'wb')
 runner = HTMLTestRunner.HTMLTestRunner(
     stream=fp,
-    title=u'团车养车测试报告',
+    title=u'团车接口测试报告',
     description=u'用例执行情况:')
 runner.run(testUnit)
 
