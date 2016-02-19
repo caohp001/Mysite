@@ -57,6 +57,70 @@ class TuAnChe(unittest.TestCase):
         self.params['brandId'] = 1
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_model_map(self):
+        u"""获取随时购选择车型"""
+        self.Interface = '/basedata/modelmap'
+        self.params['cityId'] = 10
+        self.params['styleId'] = 6
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        # print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_car_style_info(self):
+        u"""根据车型id获取车款、车型、购车须知信息（随时购）"""
+        self.Interface = '/basedata/ssgCarstyleInfo'
+        self.params['cityId'] = 10
+        self.params['styleId'] = 6
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        # print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_car_style_model(self):
+        u"""条件选车中根据车型id和车款ids获取车款、车型、购车须知信息（随时购）"""
+        self.Interface = '/basedata/attrCarstyleModel'
+        self.params['cityId'] = 10
+        self.params['styleId'] = 6
+        self.params['carModelIds'] = '14699'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        # print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_style_map(self):
+        u"""获取当前城市的热门车型"""
+        self.Interface = '/basedata/stylemap'
+        self.params['cityId'] = 10
+        self.params['brandId'] = 1
+        self.params['isBuy'] = 0
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_group_buy_info(self):
+        u"""获取周末团详情信息"""
+        self.Interface = '/groupbuy/info'
+        self.params['cityId'] = 10
+        self.params['brandId'] = 1
+        self.params['styleId'] = 1
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        # print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_group_buy_evaluate(self):
+        u"""获取周末团评价列表"""
+        self.Interface = 'groupbuy/evaluate'
+        self.params['cityId'] = 10
+        self.params['brandId'] = 1
+        self.params['offset'] = 1
+        self.params['count'] = 4
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
         print result
         self.assertEqual(result.get('code'), 10000)
 
