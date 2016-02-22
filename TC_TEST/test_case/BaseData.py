@@ -182,7 +182,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
-        self.assertEqual(result.get('code'), 10000)
+        # self.assertEqual(result.get('code'), 10000)
 
     def test_model_select(self):
         u"""获取随时购车型接口"""
@@ -215,6 +215,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_get_All_City(self):
         u"""获取所有城市列表接口"""
@@ -222,6 +223,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_getTCCity(self):
         u"""获取提车城市接口"""
@@ -229,6 +231,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_getHotCity(self):
         u"""获取热门城市接口"""
@@ -237,6 +240,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_getSysConfig(self):
         u"""获取系统配置选项接口"""
@@ -245,6 +249,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_zmt_ssg_select(self):
         u"""获取周末团完善信息接口"""
@@ -252,6 +257,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_order_num(self):
         u"""获取询价人数接口"""
@@ -260,6 +266,7 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
 
     def test_new_style(self):
         u"""获取最新车型接口"""
@@ -268,6 +275,60 @@ class BaseData(unittest.TestCase):
         r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
         result = r.json()
         print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_zmt_select(self):
+        u"""获取周末团完善信息页面选择项接口"""
+        self.Interface = 'basedata/zmt/select'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_getHotAndAllCitys(self):
+        u"""获取选择上牌城市和提现时选择开户城市接口"""
+        self.Interface = 'basedata/city/getHotAndAllCitys'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_city_Mode(self):
+        u"""获取城市模式接口1，周末团 2，随时购 3，混合模式 4，电商"""
+        self.Interface = 'basedata/cityMode'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_queryCityByLatitude(self):
+        u"""经纬度获取城市接口"""
+        self.Interface = 'basedata/city/queryCityByLatitude'
+        self.params['latitude'] = '39.9'
+        self.params['longitude'] = '116.3'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_index(self):
+        u"""获取首页新车买卖，二手车拍卖，团车养车接口"""
+        self.Interface = 'basedata/index'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_message(self):
+        u"""获取放假公告接口"""
+        self.Interface = 'basedata/message'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
 
     def tearDown(self):
         pass
