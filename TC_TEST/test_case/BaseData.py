@@ -148,6 +148,127 @@ class BaseData(unittest.TestCase):
             print result.get('msg')
         # self.assertEqual(result.get('code'), 10000)
 
+    def test_buy_way(self):
+        u"""获取购车方式统一接口"""
+        self.Interface = 'basedata/buyway'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_brand_map(self):
+        u"""获取品牌列表接口"""
+        self.Interface = 'basedata/brandmap'
+        self.params['cityId'] = 10
+        self.params['isBuy'] = 0
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_tc_activity(self):
+        u"""获取团车会接口"""
+        self.Interface = 'basedata/tcactivity'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_get_all_city_open_status(self):
+        u"""获取开通站点城市接口"""
+        self.Interface = 'basedata/city/getAllCityInOpenStatus'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_model_select(self):
+        u"""获取随时购车型接口"""
+        self.Interface = 'basedata/modelSelect'
+        self.params['modelId'] = 122
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        self.assertEqual(result.get('code'), 10000)
+
+    def test_cancel_Sub_script(self):
+        u"""取消订阅提醒开团接口"""
+        self.Interface = 'basedata/subscription/cancelSubscription'
+        self.params['styleId'] = 110
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+        if result.get('code') == 10000:
+            print result.get('msg')
+        elif result.get('code') == 2:
+            print result.get('msg')
+        else:
+            print result.get('msg')
+        # self.assertEqual(result.get('code'), 10000)
+
+    def test_subscribe(self):
+        u"""订阅提醒开团接口"""
+        self.Interface = 'basedata/subscription/subscribe'
+        self.params['styleId'] = 110
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_get_All_City(self):
+        u"""获取所有城市列表接口"""
+        self.Interface = 'basedata/city/getAllCity'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_getTCCity(self):
+        u"""获取提车城市接口"""
+        self.Interface = 'basedata/city/getTCCity'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_getHotCity(self):
+        u"""获取热门城市接口"""
+        self.Interface = 'basedata/city/getHotCity'
+        self.params['top'] = 1
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_getSysConfig(self):
+        u"""获取系统配置选项接口"""
+        self.Interface = 'basedata/getSysConfig'
+        self.params['key'] = 'ssg_order_time,ssg_order_style'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_zmt_ssg_select(self):
+        u"""获取周末团完善信息接口"""
+        self.Interface = 'basedata/zmt/ssg/select'
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_order_num(self):
+        u"""获取询价人数接口"""
+        self.Interface = 'basedata/ordernum'
+        self.params['styleId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
+    def test_new_style(self):
+        u"""获取最新车型接口"""
+        self.Interface = 'basedata/newstyle'
+        self.params['cityId'] = 10
+        r = requests.get(self.base_url+self.Interface, params=self.params, headers=self.headers)
+        result = r.json()
+        print result
+
     def tearDown(self):
         pass
 
