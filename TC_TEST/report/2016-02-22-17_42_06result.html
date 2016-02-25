@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>团车接口测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>团车接口测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2016-02-22 17:42:06</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:01.941000</p>
+<p class='attribute'><strong>Status:</strong> Pass 31 Failure 1</p>
+
+<p class='description'>用例执行情况:</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_case.BaseData.BaseData</td>
+    <td>32</td>
+    <td>31</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',32)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_brand_map: 获取品牌列表接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: {u'msg': u'\u6210\u529f', u'code': 10000, u'result': [{u'logo': u'http://t.pic.tuanche.com/car/20150420/14295244097434751_s.jpg', u'pinyin': u'aodi', u'penname': u'A', u'id': 25, u'name': u'\u5965\u8fea'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/1429525745826208_s.jpg', u'pinyin': u'babosi', u'penname': u'B', u'id': 67, u'name': u'\u5df4\u535a\u65af'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254034043238_s.jpg', u'pinyin': u'baojun', u'penname': u'B', u'id': 50, u'name': u'\u5b9d\u9a8f'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295250831087278_s.jpg', u'pinyin': u'baoma', u'penname': u'B', u'id': 26, u'name': u'\u5b9d\u9a6c'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295249490664106_s.jpg', u'pinyin': u'baoshijie', u'penname': u'B', u'id': 36, u'name': u'\u4fdd\u65f6\u6377'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295252900413131_s.jpg', u'pinyin': u'beijingqiche', u'penname': u'B', u'id': 59, u'name': u'\u5317\u4eac\u6c7d\u8f66'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295252379209114_s.jpg', u'pinyin': u'beiqiweiwang', u'penname': u'B', u'id': 62, u'name': u'\u5317\u6c7d\u5a01\u65fa'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254927461988_s.jpg', u'pinyin': u'beiqixinnengyuan', u'penname': u'B', u'id': 83, u'name': u'\u5317\u6c7d\u65b0\u80fd\u6e90'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/142952550633322_s.jpg', u'pinyin': u'beiqizhizao', u'penname': u'B', u'id': 82, u'name': u'\u5317\u6c7d\u5236\u9020'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295250696805119_s.jpg', u'pinyin': u'benchi', u'penname': u'B', u'id': 27, u'name': u'\u5954\u9a70'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295244437536763_s.jpg', u'pinyin': u'benteng', u'penname': u'B', u'id': 23, u'name': u'\u5954\u817e'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295247309161359_s.jpg', u'pinyin': u'bentian', u'penname': u'B', u'id': 10, u'name': u'\u672c\u7530'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295247951369762_s.jpg', u'pinyin': u'biaozhi', u'penname': u'B', u'id': 6, u'name': u'\u6807\u81f4'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295247615226375_s.jpg', u'pinyin': u'bieke', u'penname': u'B', u'id': 8, u'name': u'\u522b\u514b'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295245312322436_s.jpg', u'pinyin': u'biyadi', u'penname': u'B', u'id': 20, u'name': u'\u6bd4\u4e9a\u8fea'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295245635932125_s.jpg', u'pinyin': u'changan', u'penname': u'C', u'id': 18, u'name': u'\u957f\u5b89'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254776867012_s.jpg', u'pinyin': u'changanshangyong', u'penname': u'C', u'id': 84, u'name': u'\u957f\u5b89\u5546\u7528'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295245436927929_s.jpg', u'pinyin': u'changcheng', u'penname': u'C', u'id': 19, u'name': u'\u957f\u57ce'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295265225332024_s.jpg', u'pinyin': u'changhe', u'penname': u'C', u'id': 140, u'name': u'\u660c\u6cb3'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/1429525250817146_s.jpg', u'pinyin': u'daoqi', u'penname': u'D', u'id': 61, u'name': u'\u9053\u5947'}, {u'logo': u'http://t.pic.tuanche.com/car/20150707/14362766849658597_s.jpg', u'pinyin': u'dazhong', u'penname': u'D', u'id': 1, u'name': u'\u5927\u4f17'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295260121623820_s.jpg', u'pinyin': u'dongfengfengdu', u'penname': u'D', u'id': 87, u'name': u'\u4e1c\u98ce\u98ce\u5ea6'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295248674114866_s.jpg', u'pinyin': u'dongfengfengshen', u'penname': u'D', u'id': 42, u'name': u'\u4e1c\u98ce\u98ce\u795e'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295256306458330_s.jpg', u'pinyin': u'dongfengfengxing', u'penname': u'D', u'id': 74, u'name': u'\u4e1c\u98ce\u98ce\u884c'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295246348074836_s.jpg', u'pinyin': u'dongnan', u'penname': u'D', u'id': 17, u'name': u'\u4e1c\u5357'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295256784487817_s.jpg', u'pinyin': u'ds', u'penname': u'D', u'id': 71, u'name': u'DS'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295253906284259_s.jpg', u'pinyin': u'feiyate', u'penname': u'F', u'id': 51, u'name': u'\u83f2\u4e9a\u7279'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295247170072375_s.jpg', u'pinyin': u'fengtian', u'penname': u'F', u'id': 11, u'name': u'\u4e30\u7530'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295243876577141_s.jpg', u'pinyin': u'fute', u'penname': u'F', u'id': 5, u'name': u'\u798f\u7279'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295259645866806_s.jpg', u'pinyin': u'futian', u'penname': u'F', u'id': 91, u'name': u'\u798f\u7530'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295248440752442_s.jpg', u'pinyin': u'guangqichuanqi', u'penname': u'G', u'id': 44, u'name': u'\u5e7f\u6c7d\u4f20\u797a'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295255628188309_s.jpg', u'pinyin': u'guanzhi', u'penname': u'G', u'id': 79, u'name': u'\u89c2\u81f4'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295248824651223_s.jpg', u'pinyin': u'haima', u'penname': u'H', u'id': 41, u'name': u'\u6d77\u9a6c'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/1429525519595841_s.jpg', u'pinyin': u'hongqi', u'penname': u'H', u'id': 81, u'name': u'\u7ea2\u65d7'}, {u'logo': u'http://t.pic.tuanche.com/car/20150601/14331619031789123_s.jpg', u'pinyin': u'huasong', u'penname': u'H', u'id': 148, u'name': u'\u534e\u9882'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/1429525350356864_s.jpg', u'pinyin': u'huatai', u'penname': u'H', u'id': 54, u'name': u'\u534e\u6cf0'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295248963626347_s.jpg', u'pinyin': u'jeep', u'penname': u'J', u'id': 40, u'name': u'Jeep'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295250163467038_s.jpg', u'pinyin': u'jianghuai', u'penname': u'J', u'id': 31, u'name': u'\u6c5f\u6dee'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295258319655337_s.jpg', u'pinyin': u'jiangling', u'penname': u'J', u'id': 102, u'name': u'\u6c5f\u94c3'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254401551385_s.jpg', u'pinyin': u'jiebao', u'penname': u'J', u'id': 47, u'name': u'\u6377\u8c79'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295244283244011_s.jpg', u'pinyin': u'jiliqiche', u'penname': u'J', u'id': 24, u'name': u'\u5409\u5229\u6c7d\u8f66'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295256469385205_s.jpg', u'pinyin': u'jinbei', u'penname': u'J', u'id': 73, u'name': u'\u91d1\u676f'}, {u'logo': u'http://t.pic.tuanche.com/car/20150910/14418712199065067_s.jpg', u'pinyin': u'kaidilake', u'penname': u'K', u'id': 55, u'name': u'\u51ef\u8fea\u62c9\u514b'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295265113909498_s.jpg', u'pinyin': u'kaiyi', u'penname': u'K', u'id': 141, u'name': u'\u51ef\u7ffc'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295250575782275_s.jpg', u'pinyin': u'kelaisile', u'penname': u'K', u'id': 28, u'name': u'\u514b\u83b1\u65af\u52d2'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295250422536997_s.jpg', u'pinyin': u'leinuo', u'penname': u'L', u'id': 29, u'name': u'\u96f7\u8bfa'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295248551139771_s.jpg', u'pinyin': u'lifan', u'penname': u'L', u'id': 43, u'name': u'\u529b\u5e06'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295245948489826_s.jpg', u'pinyin': u'lingmu', u'penname': u'L', u'id': 15, u'name': u'\u94c3\u6728'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295263553575809_s.jpg', u'pinyin': u'linken', u'penname': u'L', u'id': 111, u'name': u'\u6797\u80af'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295263255515394_s.jpg', u'pinyin': u'lufeng', u'penname': u'L', u'id': 113, u'name': u'\u9646\u98ce'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295249760083977_s.jpg', u'pinyin': u'luhu', u'penname': u'L', u'id': 34, u'name': u'\u8def\u864e'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295246795327119_s.jpg', u'pinyin': u'mazida', u'penname': u'M', u'id': 14, u'name': u'\u9a6c\u81ea\u8fbe'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295246933195143_s.jpg', u'pinyin': u'mg', u'penname': u'M', u'id': 13, u'name': u'MG'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254160093479_s.jpg', u'pinyin': u'mini', u'penname': u'M', u'id': 49, u'name': u'MINI'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295253632287017_s.jpg', u'pinyin': u'nazhijie', u'penname': u'N', u'id': 53, u'name': u'\u7eb3\u667a\u6377'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254285982595_s.jpg', u'pinyin': u'ouge', u'penname': u'O', u'id': 48, u'name': u'\u8bb4\u6b4c'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295254513699764_s.jpg', u'pinyin': u'qichen', u'penname': u'Q', u'id': 46, u'name': u'\u542f\u8fb0'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295245025337292_s.jpg', u'pinyin': u'qirui', u'penname': u'Q', u'id': 22, u'name': u'\u5947\u745e'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295246637183906_s.jpg', u'pinyin': u'qiya', u'penname': u'Q', u'id': 16, u'name': u'\u8d77\u4e9a'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295243287004706_s.jpg', u'pinyin': u'richan', u'penname': u'R', u'id': 2, u'name': u'\u65e5\u4ea7'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295247053325732_s.jpg', u'pinyin': u'rongwei', u'penname': u'R', u'id': 12, u'name': u'\u8363\u5a01'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295249345912755_s.jpg', u'pinyin': u'sanling', u'penname': u'S', u'id': 37, u'name': u'\u4e09\u83f1'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295253751507994_s.jpg', u'pinyin': u'shuanglong', u'penname': u'S', u'id': 52, u'name': u'\u53cc\u9f99'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295249893387747_s.jpg', u'pinyin': u'sibalu', u'penname': u'S', u'id': 33, u'name': u'\u65af\u5df4\u9c81'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295243494042818_s.jpg', u'pinyin': u'sikeda', u'penname': u'S', u'id': 3, u'name': u'\u65af\u67ef\u8fbe'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295253146764962_s.jpg', u'pinyin': u'smart', u'penname': u'S', u'id': 57, u'name': u'smart'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295266571252093_s.jpg', u'pinyin': u'tengshi', u'penname': u'T', u'id': 128, u'name': u'\u817e\u52bf'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295266479929995_s.jpg', u'pinyin': u'tesila', u'penname': u'T', u'id': 129, u'name': u'\u7279\u65af\u62c9'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295250295185997_s.jpg', u'pinyin': u'woerwo', u'penname': u'W', u'id': 30, u'name': u'\u6c83\u5c14\u6c83'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/1429525693577254_s.jpg', u'pinyin': u'wulingqiche', u'penname': u'W', u'id': 70, u'name': u'\u4e94\u83f1\u6c7d\u8f66'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295243711442986_s.jpg', u'pinyin': u'xiandai', u'penname': u'X', u'id': 4, u'name': u'\u73b0\u4ee3'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295247494442177_s.jpg', u'pinyin': u'xuefulan', u'penname': u'X', u'id': 9, u'name': u'\u96ea\u4f5b\u5170'}, {u'logo': u'http://t.pic.tuanche.com/car/20150707/14362713178273669_s.jpg', u'pinyin': u'xuetielong', u'penname': u'X', u'id': 7, u'name': u'\u96ea\u94c1\u9f99'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295249224717116_s.jpg', u'pinyin': u'yingfeinidi', u'penname': u'Y', u'id': 38, u'name': u'\u82f1\u83f2\u5c3c\u8fea'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295245149528811_s.jpg', u'pinyin': u'yiqi', u'penname': u'Y', u'id': 21, u'name': u'\u4e00\u6c7d'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295265620685603_s.jpg', u'pinyin': u'zhidou', u'penname': u'Z', u'id': 137, u'name': u'\u77e5\u8c46'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/1429525002986694_s.jpg', u'pinyin': u'zhonghua', u'penname': u'Z', u'id': 32, u'name': u'\u4e2d\u534e'}, {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295256626061729_s.jpg', u'pinyin': u'zhongtai', u'penname': u'Z', u'id': 72, u'name': u'\u4f17\u6cf0'}]}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_buy_way: 获取购车方式统一接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: {u'msg': u'', u'code': 10000, u'result': {u'isMust': 0, u'showWhere': 2, u'buyWayList': [{u'name': u'\u65b0\u8f66\u8d37\u6b3e', u'value': u'1'}, {u'name': u'\u65b0\u8f66\u5168\u6b3e', u'value': u'2'}, {u'name': u'\u7f6e\u6362\u8d37\u6b3e', u'value': u'3'}, {u'name': u'\u7f6e\u6362\u5168\u6b3e', u'value': u'4'}]}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_cancel_Sub_script: 取消订阅提醒开团接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: {u'msg': u'\u53d6\u6d88\u6210\u529f', u'code': 10000, u'result': u''}
+取消成功
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_car_style_info: 根据车型id获取车款、车型、购车须知信息（随时购）</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_car_style_model: 条件选车中根据车型id和车款ids获取车款、车型、购车须知信息（随时购）</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_check_sub_script: 获取车型是否已订阅</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: {u'msg': u'\u4e0d\u5b58\u5728', u'code': 2}
+不存在
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_city_Mode: 获取城市模式接口1，周末团 2，随时购 3，混合模式 4，电商</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: {u'msg': u'', u'code': 10000, u'result': {u'mode': 2}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getHotAndAllCitys: 获取选择上牌城市和提现时选择开户城市接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: {u'msg': u'\u8c03\u7528\u6210\u529f', u'code': 10000, u'result': {u'allCitys': [{u'province': u'\u56db\u5ddd', u'name': u'\u963f\u575d', u'pinyin': u'aba', u'py': u'ab', u'pname': u'\u897f\u5357\u533a', u'id': 157}, {u'province': u'\u65b0\u7586', u'name': u'\u963f\u514b\u82cf', u'pinyin': u'akesu', u'py': u'aks', u'pname': u'\u897f\u5317\u533a', u'id': 234}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u963f\u62c9\u5584\u76df', u'pinyin': u'alashanmeng', u'py': u'alsm', u'pname': u'\u534e\u5317\u533a', u'id': 285}, {u'province': u'\u65b0\u7586', u'name': u'\u963f\u52d2\u6cf0', u'pinyin': u'aletai', u'py': u'aletai', u'pname': u'\u897f\u5317\u533a', u'id': 236}, {u'province': u'\u897f\u85cf', u'name': u'\u963f\u91cc', u'pinyin': u'ali', u'py': u'al', u'pname': u'\u897f\u5357\u533a', u'id': 112}, {u'province': u'\u9655\u897f', u'name': u'\u5b89\u5eb7', u'pinyin': u'ankang', u'py': u'ankang', u'pname': u'\u897f\u5317\u533a', u'id': 69}, {u'province': u'\u5b89\u5fbd', u'name': u'\u5b89\u5e86', u'pinyin': u'anqing', u'py': u'anqing', u'pname': u'\u534e\u4e1c\u533a', u'id': 297}, {u'province': u'\u8fbd\u5b81', u'name': u'\u978d\u5c71', u'pinyin': u'anshan', u'py': u'as', u'pname': u'\u4e1c\u5317\u533a', u'id': 197}, {u'province': u'\u8d35\u5dde', u'name': u'\u5b89\u987a', u'pinyin': u'anshun', u'py': u'anshun', u'pname': u'\u897f\u5357\u533a', u'id': 130}, {u'province': u'\u6cb3\u5357', u'name': u'\u5b89\u9633', u'pinyin': u'anyang', u'py': u'ay', u'pname': u'\u534e\u4e2d\u533a', u'id': 93}, {u'province': u'\u5409\u6797', u'name': u'\u767d\u57ce', u'pinyin': u'baicheng', u'py': u'bc', u'pname': u'\u4e1c\u5317\u533a', u'id': 180}, {u'province': u'\u5e7f\u897f', u'name': u'\u767e\u8272', u'pinyin': u'baise', u'py': u'baise', u'pname': u'\u534e\u5357\u533a', u'id': 223}, {u'province': u'\u5409\u6797', u'name': u'\u767d\u5c71', u'pinyin': u'baishan', u'py': u'baishan', u'pname': u'\u4e1c\u5317\u533a', u'id': 182}, {u'province': u'\u7518\u8083', u'name': u'\u767d\u94f6', u'pinyin': u'baiyin', u'py': u'by', u'pname': u'\u897f\u5317\u533a', u'id': 56}, {u'province': u'\u6cb3\u5317', u'name': u'\u4fdd\u5b9a', u'pinyin': u'baoding', u'py': u'bd', u'pname': u'\u534e\u5317\u533a', u'id': 70}, {u'province': u'\u9655\u897f', u'name': u'\u5b9d\u9e21', u'pinyin': u'baoji', u'py': u'baoji', u'pname': u'\u897f\u5317\u533a', u'id': 71}, {u'province': u'\u4e91\u5357', u'name': u'\u4fdd\u5c71', u'pinyin': u'baoshan', u'py': u'bs', u'pname': u'\u897f\u5357\u533a', u'id': 139}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u5305\u5934', u'pinyin': u'baotou', u'py': u'bt', u'pname': u'\u534e\u5317\u533a', u'id': 287}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u5df4\u5f66\u6dd6\u5c14\u76df', u'pinyin': u'bayannaoer', u'py': u'bycem', u'pname': u'\u534e\u5317\u533a', u'id': 286}, {u'province': u'\u65b0\u7586', u'name': u'\u5df4\u97f3\u90ed\u695e', u'pinyin': u'bayinguoleng', u'py': u'bygl', u'pname': u'\u897f\u5317\u533a', u'id': 239}, {u'province': u'\u5e7f\u897f', u'name': u'\u5317\u6d77', u'pinyin': u'beihai', u'py': u'bh', u'pname': u'\u534e\u5357\u533a', u'id': 224}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5317\u4eac', u'pinyin': u'beijing', u'py': u'bj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 10}, {u'province': u'\u5b89\u5fbd', u'name': u'\u868c\u57e0', u'pinyin': u'bengbu', u'py': u'bengbu', u'pname': u'\u534e\u4e1c\u533a', u'id': 298}, {u'province': u'\u8fbd\u5b81', u'name': u'\u672c\u6eaa', u'pinyin': u'benxi', u'py': u'benxi', u'pname': u'\u4e1c\u5317\u533a', u'id': 1010}, {u'province': u'\u8d35\u5dde', u'name': u'\u6bd5\u8282', u'pinyin': u'bijie', u'py': u'bijie', u'pname': u'\u897f\u5357\u533a', u'id': 131}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6ee8\u5dde', u'pinyin': u'binzhou', u'py': u'bz', u'pname': u'\u534e\u4e1c\u533a', u'id': 334}, {u'province': u'\u65b0\u7586', u'name': u'\u535a\u5c14\u5854\u62c9', u'pinyin': u'boertala', u'py': u'betl', u'pname': u'\u897f\u5317\u533a', u'id': 241}, {u'province': u'\u6cb3\u5317', u'name': u'\u6ca7\u5dde', u'pinyin': u'cangzhou', u'py': u'cangzhou', u'pname': u'\u534e\u5317\u533a', u'id': 72}, {u'province': u'\u5409\u6797', u'name': u'\u957f\u6625', u'pinyin': u'changchun', u'py': u'cc', u'pname': u'\u4e1c\u5317\u533a', u'id': 178}, {u'province': u'\u6e56\u5357', u'name': u'\u5e38\u5fb7', u'pinyin': u'changde', u'py': u'changde', u'pname': u'\u534e\u4e2d\u533a', u'id': 135}, {u'province': u'\u897f\u85cf', u'name': u'\u660c\u90fd', u'pinyin': u'changdu', u'py': u'changdu', u'pname': u'\u897f\u5357\u533a', u'id': 114}, {u'province': u'\u6e56\u5357', u'name': u'\u957f\u6c99', u'pinyin': u'changsha', u'py': u'cs', u'pname': u'\u534e\u4e2d\u533a', u'id': 132}, {u'province': u'\u5c71\u897f', u'name': u'\u957f\u6cbb', u'pinyin': u'changzhi', u'py': u'changzhi', u'pname': u'\u534e\u5317\u533a', u'id': 54}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5e38\u5dde', u'pinyin': u'changzhou', u'py': u'cz', u'pname': u'\u534e\u4e1c\u533a', u'id': 322}, {u'province': u'\u8fbd\u5b81', u'name': u'\u671d\u9633', u'pinyin': u'chaoyang', u'py': u'cy', u'pname': u'\u4e1c\u5317\u533a', u'id': 200}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6f6e\u5dde', u'pinyin': u'chaozhou', u'py': u'chaozhou', u'pname': u'\u534e\u5357\u533a', u'id': 251}, {u'province': u'\u6cb3\u5317', u'name': u'\u627f\u5fb7', u'pinyin': u'chengde', u'py': u'chengde', u'pname': u'\u534e\u5317\u533a', u'id': 75}, {u'province': u'\u56db\u5ddd', u'name': u'\u6210\u90fd', u'pinyin': u'chengdu', u'py': u'cd', u'pname': u'\u897f\u5357\u533a', u'id': 156}, {u'province': u'\u6e56\u5357', u'name': u'\u90f4\u5dde', u'pinyin': u'chenzhou', u'py': u'chenzhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 138}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u8d64\u5cf0', u'pinyin': u'chifeng', u'py': u'chifeng', u'pname': u'\u534e\u5317\u533a', u'id': 288}, {u'province': u'\u5b89\u5fbd', u'name': u'\u6c60\u5dde', u'pinyin': u'chizhou', u'py': u'chizhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 300}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u91cd\u5e86', u'pinyin': u'chongqing', u'py': u'cq', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1005}, {u'province': u'\u5e7f\u897f', u'name': u'\u5d07\u5de6', u'pinyin': u'chongzuo', u'py': u'chongzuo', u'pname': u'\u534e\u5357\u533a', u'id': 226}, {u'province': u'\u4e91\u5357', u'name': u'\u695a\u96c4', u'pinyin': u'chuxiong', u'py': u'cx', u'pname': u'\u897f\u5357\u533a', u'id': 141}, {u'province': u'\u5b89\u5fbd', u'name': u'\u6ec1\u5dde', u'pinyin': u'chuzhou', u'py': u'chuzhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 301}, {u'province': u'\u4e91\u5357', u'name': u'\u5927\u7406', u'pinyin': u'dali', u'py': u'dali', u'pname': u'\u897f\u5357\u533a', u'id': 142}, {u'province': u'\u8fbd\u5b81', u'name': u'\u5927\u8fde', u'pinyin': u'dalian', u'py': u'dl', u'pname': u'\u4e1c\u5317\u533a', u'id': 201}, {u'province': u'\u8fbd\u5b81', u'name': u'\u4e39\u4e1c', u'pinyin': u'dandong', u'py': u'dandong', u'pname': u'\u4e1c\u5317\u533a', u'id': 202}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u5927\u5e86', u'pinyin': u'daqing', u'py': u'dq', u'pname': u'\u4e1c\u5317\u533a', u'id': 262}, {u'province': u'\u5c71\u897f', u'name': u'\u5927\u540c', u'pinyin': u'datong', u'py': u'dt', u'pname': u'\u534e\u5317\u533a', u'id': 31}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u5927\u5174\u5b89\u5cad', u'pinyin': u'daxinganling', u'py': u'dxal', u'pname': u'\u4e1c\u5317\u533a', u'id': 282}, {u'province': u'\u4e91\u5357', u'name': u'\u5fb7\u5b8f', u'pinyin': u'dehong', u'py': u'dh', u'pname': u'\u897f\u5357\u533a', u'id': 143}, {u'province': u'\u56db\u5ddd', u'name': u'\u5fb7\u9633', u'pinyin': u'deyang', u'py': u'deyang', u'pname': u'\u897f\u5357\u533a', u'id': 158}, {u'province': u'\u5c71\u4e1c', u'name': u'\u5fb7\u5dde', u'pinyin': u'dezhou', u'py': u'dz', u'pname': u'\u534e\u4e1c\u533a', u'id': 335}, {u'province': u'\u7518\u8083', u'name': u'\u5b9a\u897f', u'pinyin': u'dingxi', u'py': u'dx', u'pname': u'\u897f\u5317\u533a', u'id': 57}, {u'province': u'\u4e91\u5357', u'name': u'\u8fea\u5e86', u'pinyin': u'diqing', u'py': u'diqing', u'pname': u'\u897f\u5357\u533a', u'id': 144}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u4e1c\u839e', u'pinyin': u'dongguan', u'py': u'dg', u'pname': u'\u534e\u5357\u533a', u'id': 253}, {u'province': u'\u5c71\u4e1c', u'name': u'\u4e1c\u8425', u'pinyin': u'dongying', u'py': u'dy', u'pname': u'\u534e\u4e1c\u533a', u'id': 336}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u9102\u5c14\u591a\u65af', u'pinyin': u'eerduosi', u'py': u'erds', u'pname': u'\u534e\u5317\u533a', u'id': 289}, {u'province': u'\u6e56\u5317', u'name': u'\u6069\u65bd', u'pinyin': u'enshi', u'py': u'es', u'pname': u'\u534e\u4e2d\u533a', u'id': 181}, {u'province': u'\u6e56\u5317', u'name': u'\u9102\u5dde', u'pinyin': u'ezhou', u'py': u'ez', u'pname': u'\u534e\u4e2d\u533a', u'id': 179}, {u'province': u'\u5e7f\u897f', u'name': u'\u9632\u57ce\u6e2f', u'pinyin': u'fangchenggang', u'py': u'fcg', u'pname': u'\u534e\u5357\u533a', u'id': 242}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u4f5b\u5c71', u'pinyin': u'foshan', u'py': u'fs', u'pname': u'\u534e\u5357\u533a', u'id': 254}, {u'province': u'\u8fbd\u5b81', u'name': u'\u629a\u987a', u'pinyin': u'fushun', u'py': u'fushun', u'pname': u'\u4e1c\u5317\u533a', u'id': 204}, {u'province': u'\u8fbd\u5b81', u'name': u'\u961c\u65b0', u'pinyin': u'fuxin', u'py': u'fx', u'pname': u'\u4e1c\u5317\u533a', u'id': 206}, {u'province': u'\u5b89\u5fbd', u'name': u'\u961c\u9633', u'pinyin': u'fuyang', u'py': u'fy', u'pname': u'\u534e\u4e1c\u533a', u'id': 302}, {u'province': u'\u798f\u5efa', u'name': u'\u798f\u5dde', u'pinyin': u'fuzhou', u'py': u'fz', u'pname': u'\u534e\u5357\u533a', u'id': 208}, {u'province': u'\u6c5f\u897f', u'name': u'\u629a\u5dde', u'pinyin': u'fuzhou_js', u'py': u'fuzhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 118}, {u'province': u'\u7518\u8083', u'name': u'\u7518\u5357', u'pinyin': u'gannan', u'py': u'gn', u'pname': u'\u897f\u5317\u533a', u'id': 58}, {u'province': u'\u6c5f\u897f', u'name': u'\u8d63\u5dde', u'pinyin': u'ganzhou', u'py': u'ganzhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 120}, {u'province': u'\u56db\u5ddd', u'name': u'\u5e7f\u5b89', u'pinyin': u'guangan', u'py': u'ga', u'pname': u'\u897f\u5357\u533a', u'id': 162}, {u'province': u'\u56db\u5ddd', u'name': u'\u5e7f\u5143', u'pinyin': u'guangyuan', u'py': u'guangyuan', u'pname': u'\u897f\u5357\u533a', u'id': 159}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u5e7f\u5dde', u'pinyin': u'guangzhou', u'py': u'gz', u'pname': u'\u534e\u5357\u533a', u'id': 249}, {u'province': u'\u5e7f\u897f', u'name': u'\u8d35\u6e2f', u'pinyin': u'guigang', u'py': u'gg', u'pname': u'\u534e\u5357\u533a', u'id': 227}, {u'province': u'\u5e7f\u897f', u'name': u'\u6842\u6797', u'pinyin': u'guilin', u'py': u'gl', u'pname': u'\u534e\u5357\u533a', u'id': 228}, {u'province': u'\u8d35\u5dde', u'name': u'\u8d35\u9633', u'pinyin': u'guiyang', u'py': u'gy', u'pname': u'\u897f\u5357\u533a', u'id': 129}, {u'province': u'\u9752\u6d77', u'name': u'\u679c\u6d1b', u'pinyin': u'guoluo', u'py': u'guoluo', u'pname': u'\u897f\u5317\u533a', u'id': 86}, {u'province': u'\u5b81\u590f', u'name': u'\u56fa\u539f', u'pinyin': u'guyuan', u'py': u'guyuan', u'pname': u'\u897f\u5317\u533a', u'id': 100}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u54c8\u5c14\u6ee8', u'pinyin': u'haerbin', u'py': u'hrb', u'pname': u'\u4e1c\u5317\u533a', u'id': 258}, {u'province': u'\u9752\u6d77', u'name': u'\u6d77\u5317', u'pinyin': u'haibei', u'py': u'haibei', u'pname': u'\u897f\u5317\u533a', u'id': 88}, {u'province': u'\u9752\u6d77', u'name': u'\u6d77\u4e1c', u'pinyin': u'haidong', u'py': u'haidong', u'pname': u'\u897f\u5317\u533a', u'id': 89}, {u'province': u'\u6d77\u5357', u'name': u'\u6d77\u53e3', u'pinyin': u'haikou', u'py': u'haikou', u'pname': u'\u534e\u5317\u533a', u'id': 203}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u6d77\u62c9\u5c14', u'pinyin': u'hailaer', u'py': u'hlr', u'pname': u'\u534e\u5317\u533a', u'id': 290}, {u'province': u'\u9752\u6d77', u'name': u'\u6d77\u5357\u5dde', u'pinyin': u'hainanzhou', u'py': u'hainanzhou', u'pname': u'\u897f\u5317\u533a', u'id': 229}, {u'province': u'\u9752\u6d77', u'name': u'\u6d77\u897f', u'pinyin': u'haixi', u'py': u'hx', u'pname': u'\u897f\u5317\u533a', u'id': 91}, {u'province': u'\u65b0\u7586', u'name': u'\u54c8\u5bc6', u'pinyin': u'hami', u'py': u'hami', u'pname': u'\u897f\u5317\u533a', u'id': 243}, {u'province': u'\u6cb3\u5317', u'name': u'\u90af\u90f8', u'pinyin': u'handan', u'py': u'hd', u'pname': u'\u534e\u5317\u533a', u'id': 77}, {u'province': u'\u6d59\u6c5f', u'name': u'\u676d\u5dde', u'pinyin': u'hangzhou', u'py': u'hz', u'pname': u'\u534e\u4e1c\u533a', u'id': 311}, {u'province': u'\u5b89\u5fbd', u'name': u'\u6beb\u5dde', u'pinyin': u'haozhou', u'py': u'haozhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 299}, {u'province': u'\u6cb3\u5357', u'name': u'\u9e64\u58c1', u'pinyin': u'hebi', u'py': u'hb', u'pname': u'\u534e\u4e2d\u533a', u'id': 95}, {u'province': u'\u5e7f\u897f', u'name': u'\u6cb3\u6c60', u'pinyin': u'hechi', u'py': u'hc', u'pname': u'\u534e\u5357\u533a', u'id': 230}, {u'province': u'\u5b89\u5fbd', u'name': u'\u5408\u80a5', u'pinyin': u'hefei', u'py': u'hf', u'pname': u'\u534e\u4e1c\u533a', u'id': 296}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u9e64\u5c97', u'pinyin': u'hegang', u'py': u'hegang', u'pname': u'\u4e1c\u5317\u533a', u'id': 261}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u9ed1\u6cb3', u'pinyin': u'heihe', u'py': u'heihe', u'pname': u'\u4e1c\u5317\u533a', u'id': 277}, {u'province': u'\u6cb3\u5317', u'name': u'\u8861\u6c34', u'pinyin': u'hengshui', u'py': u'hs', u'pname': u'\u534e\u5317\u533a', u'id': 80}, {u'province': u'\u6e56\u5357', u'name': u'\u8861\u9633', u'pinyin': u'hengyang', u'py': u'hy', u'pname': u'\u534e\u4e2d\u533a', u'id': 140}, {u'province': u'\u65b0\u7586', u'name': u'\u548c\u7530', u'pinyin': u'hetian', u'py': u'ht', u'pname': u'\u897f\u5317\u533a', u'id': 244}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6cb3\u6e90', u'pinyin': u'heyuan', u'py': u'heyuan', u'pname': u'\u534e\u5357\u533a', u'id': 255}, {u'province': u'\u5c71\u4e1c', u'name': u'\u83cf\u6cfd', u'pinyin': u'heze', u'py': u'heze', u'pname': u'\u534e\u4e1c\u533a', u'id': 337}, {u'province': u'\u5e7f\u897f', u'name': u'\u8d3a\u5dde', u'pinyin': u'hezhou', u'py': u'hezhou', u'pname': u'\u534e\u5357\u533a', u'id': 232}, {u'province': u'\u4e91\u5357', u'name': u'\u7ea2\u6cb3', u'pinyin': u'honghe', u'py': u'honghe', u'pname': u'\u897f\u5357\u533a', u'id': 146}, {u'province': u'\u6c5f\u82cf', u'name': u'\u6dee\u5b89', u'pinyin': u'huaian', u'py': u'ha', u'pname': u'\u534e\u4e1c\u533a', u'id': 323}, {u'province': u'\u5b89\u5fbd', u'name': u'\u6dee\u5317', u'pinyin': u'huaibei', u'py': u'huaibei', u'pname': u'\u534e\u4e1c\u533a', u'id': 303}, {u'province': u'\u6e56\u5357', u'name': u'\u6000\u5316', u'pinyin': u'huaihua', u'py': u'hh', u'pname': u'\u534e\u4e2d\u533a', u'id': 145}, {u'province': u'\u5b89\u5fbd', u'name': u'\u6dee\u5357', u'pinyin': u'huainan', u'py': u'hn', u'pname': u'\u534e\u4e1c\u533a', u'id': 304}, {u'province': u'\u6e56\u5317', u'name': u'\u9ec4\u5188', u'pinyin': u'huanggang', u'py': u'hg', u'pname': u'\u534e\u4e2d\u533a', u'id': 183}, {u'province': u'\u9752\u6d77', u'name': u'\u9ec4\u5357', u'pinyin': u'huangnan', u'py': u'huangnan', u'pname': u'\u897f\u5317\u533a', u'id': 92}, {u'province': u'\u5b89\u5fbd', u'name': u'\u9ec4\u5c71', u'pinyin': u'huangshan', u'py': u'huangshan', u'pname': u'\u534e\u4e1c\u533a', u'id': 305}, {u'province': u'\u6e56\u5317', u'name': u'\u9ec4\u77f3', u'pinyin': u'huangshi', u'py': u'hshi', u'pname': u'\u534e\u4e2d\u533a', u'id': 185}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u60e0\u5dde', u'pinyin': u'huizhou', u'py': u'huizhou', u'pname': u'\u534e\u5357\u533a', u'id': 256}, {u'province': u'\u8fbd\u5b81', u'name': u'\u846b\u82a6\u5c9b', u'pinyin': u'huludao', u'py': u'hld', u'pname': u'\u4e1c\u5317\u533a', u'id': 207}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u547c\u4f26\u8d1d\u5c14', u'pinyin': u'hulunbeier', u'py': u'hlbe', u'pname': u'\u534e\u5317\u533a', u'id': 291}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u547c\u5e02', u'pinyin': u'hushi', u'py': u'hushi', u'pname': u'\u534e\u5317\u533a', u'id': 284}, {u'province': u'\u6d59\u6c5f', u'name': u'\u6e56\u5dde', u'pinyin': u'huzhou', u'py': u'huzhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 312}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u4f73\u6728\u65af', u'pinyin': u'jiamusi', u'py': u'jms', u'pname': u'\u4e1c\u5317\u533a', u'id': 264}, {u'province': u'\u6c5f\u897f', u'name': u'\u5409\u5b89', u'pinyin': u'jian', u'py': u'ja', u'pname': u'\u534e\u4e2d\u533a', u'id': 122}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6c5f\u95e8', u'pinyin': u'jiangmen', u'py': u'jm', u'pname': u'\u534e\u5357\u533a', u'id': 257}, {u'province': u'\u6cb3\u5357', u'name': u'\u7126\u4f5c', u'pinyin': u'jiaozuo', u'py': u'jiaozuo', u'pname': u'\u534e\u4e2d\u533a', u'id': 96}, {u'province': u'\u6d59\u6c5f', u'name': u'\u5609\u5174', u'pinyin': u'jiaxing', u'py': u'jx', u'pname': u'\u534e\u4e1c\u533a', u'id': 313}, {u'province': u'\u7518\u8083', u'name': u'\u5609\u5cea\u5173', u'pinyin': u'jiayuguan', u'py': u'jyg', u'pname': u'\u897f\u5317\u533a', u'id': 59}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u63ed\u9633', u'pinyin': u'jieyang', u'py': u'jy', u'pname': u'\u534e\u5357\u533a', u'id': 1006}, {u'province': u'\u5409\u6797', u'name': u'\u5409\u6797\u5e02', u'pinyin': u'jilinshi', u'py': u'jl', u'pname': u'\u4e1c\u5317\u533a', u'id': 225}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6d4e\u5357', u'pinyin': u'jinan', u'py': u'jn', u'pname': u'\u534e\u4e1c\u533a', u'id': 6}, {u'province': u'\u5c71\u897f', u'name': u'\u664b\u57ce', u'pinyin': u'jincheng', u'py': u'jincheng', u'pname': u'\u534e\u5317\u533a', u'id': 36}, {u'province': u'\u6c5f\u897f', u'name': u'\u666f\u5fb7\u9547', u'pinyin': u'jingdezhen', u'py': u'jdz', u'pname': u'\u534e\u4e2d\u533a', u'id': 355}, {u'province': u'\u6e56\u5317', u'name': u'\u8346\u95e8', u'pinyin': u'jingmen', u'py': u'jingmen', u'pname': u'\u534e\u4e2d\u533a', u'id': 187}, {u'province': u'\u6e56\u5317', u'name': u'\u8346\u5dde', u'pinyin': u'jingzhou', u'py': u'jingzhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 189}, {u'province': u'\u6d59\u6c5f', u'name': u'\u91d1\u534e', u'pinyin': u'jinhua', u'py': u'jh', u'pname': u'\u534e\u4e1c\u533a', u'id': 314}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6d4e\u5b81', u'pinyin': u'jining', u'py': u'jining', u'pname': u'\u534e\u4e1c\u533a', u'id': 338}, {u'province': u'\u5c71\u897f', u'name': u'\u664b\u4e2d', u'pinyin': u'jinzhong', u'py': u'jz', u'pname': u'\u534e\u5317\u533a', u'id': 38}, {u'province': u'\u8fbd\u5b81', u'name': u'\u9526\u5dde', u'pinyin': u'jinzhou', u'py': u'jinzhou', u'pname': u'\u4e1c\u5317\u533a', u'id': 209}, {u'province': u'\u6c5f\u897f', u'name': u'\u4e5d\u6c5f', u'pinyin': u'jiujiang', u'py': u'jj', u'pname': u'\u534e\u4e2d\u533a', u'id': 123}, {u'province': u'\u7518\u8083', u'name': u'\u9152\u6cc9', u'pinyin': u'jiuquan', u'py': u'jq', u'pname': u'\u897f\u5317\u533a', u'id': 60}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u9e21\u897f', u'pinyin': u'jixi', u'py': u'jixi', u'pname': u'\u4e1c\u5317\u533a', u'id': 279}, {u'province': u'\u6cb3\u5357', u'name': u'\u5f00\u5c01', u'pinyin': u'kaifeng', u'py': u'kaifeng', u'pname': u'\u534e\u4e2d\u533a', u'id': 97}, {u'province': u'\u65b0\u7586', u'name': u'\u5580\u4ec0', u'pinyin': u'kashen', u'py': u'ks', u'pname': u'\u897f\u5317\u533a', u'id': 246}, {u'province': u'\u65b0\u7586', u'name': u'\u514b\u62c9\u739b\u4f9d', u'pinyin': u'kelamayi', u'py': u'klmy', u'pname': u'\u897f\u5317\u533a', u'id': 245}, {u'province': u'\u65b0\u7586', u'name': u'\u5e93\u5c14\u52d2', u'pinyin': u'kuerle', u'py': u'kel', u'pname': u'\u897f\u5317\u533a', u'id': 1009}, {u'province': u'\u4e91\u5357', u'name': u'\u6606\u660e', u'pinyin': u'kunming', u'py': u'km', u'pname': u'\u897f\u5357\u533a', u'id': 137}, {u'province': u'\u6c5f\u82cf', u'name': u'\u6606\u5c71', u'pinyin': u'kunshan', u'py': u'kunshan', u'pname': u'\u534e\u4e1c\u533a', u'id': 1012}, {u'province': u'\u5e7f\u897f', u'name': u'\u6765\u5bbe', u'pinyin': u'laibin', u'py': u'lb', u'pname': u'\u534e\u5357\u533a', u'id': 233}, {u'province': u'\u5c71\u4e1c', u'name': u'\u83b1\u829c', u'pinyin': u'laiwu', u'py': u'lw', u'pname': u'\u534e\u4e1c\u533a', u'id': 339}, {u'province': u'\u6cb3\u5317', u'name': u'\u5eca\u574a', u'pinyin': u'langfang', u'py': u'lf', u'pname': u'\u534e\u5317\u533a', u'id': 82}, {u'province': u'\u7518\u8083', u'name': u'\u5170\u5dde', u'pinyin': u'lanzhou', u'py': u'lz', u'pname': u'\u897f\u5317\u533a', u'id': 55}, {u'province': u'\u897f\u85cf', u'name': u'\u62c9\u8428', u'pinyin': u'lasa', u'py': u'lasa', u'pname': u'\u897f\u5357\u533a', u'id': 110}, {u'province': u'\u56db\u5ddd', u'name': u'\u4e50\u5c71', u'pinyin': u'leshan', u'py': u'ls', u'pname': u'\u897f\u5357\u533a', u'id': 163}, {u'province': u'\u6c5f\u82cf', u'name': u'\u8fde\u4e91\u6e2f', u'pinyin': u'lianyungang', u'py': u'lyg', u'pname': u'\u534e\u4e1c\u533a', u'id': 324}, {u'province': u'\u5c71\u4e1c', u'name': u'\u804a\u57ce', u'pinyin': u'liaocheng', u'py': u'lc', u'pname': u'\u534e\u4e1c\u533a', u'id': 340}, {u'province': u'\u8fbd\u5b81', u'name': u'\u8fbd\u9633', u'pinyin': u'liaoyang', u'py': u'liaoyang', u'pname': u'\u4e1c\u5317\u533a', u'id': 211}, {u'province': u'\u5409\u6797', u'name': u'\u8fbd\u6e90', u'pinyin': u'liaoyuan', u'py': u'liaoyuan', u'pname': u'\u4e1c\u5317\u533a', u'id': 184}, {u'province': u'\u4e91\u5357', u'name': u'\u4e3d\u6c5f', u'pinyin': u'lijiang', u'py': u'lj', u'pname': u'\u897f\u5357\u533a', u'id': 148}, {u'province': u'\u5c71\u897f', u'name': u'\u4e34\u6c7e', u'pinyin': u'linfen', u'py': u'linfen', u'pname': u'\u534e\u5317\u533a', u'id': 43}, {u'province': u'\u7518\u8083', u'name': u'\u4e34\u590f', u'pinyin': u'linxia', u'py': u'linxia', u'pname': u'\u897f\u5317\u533a', u'id': 61}, {u'province': u'\u5c71\u4e1c', u'name': u'\u4e34\u6c82', u'pinyin': u'linyi', u'py': u'linyi', u'pname': u'\u534e\u4e1c\u533a', u'id': 341}, {u'province': u'\u897f\u85cf', u'name': u'\u6797\u829d', u'pinyin': u'linzhi', u'py': u'linzhi', u'pname': u'\u897f\u5357\u533a', u'id': 115}, {u'province': u'\u6d59\u6c5f', u'name': u'\u4e3d\u6c34', u'pinyin': u'lishui', u'py': u'lishui', u'pname': u'\u534e\u4e1c\u533a', u'id': 320}, {u'province': u'\u8d35\u5dde', u'name': u'\u516d\u76d8\u6c34', u'pinyin': u'liupanshui', u'py': u'lps', u'pname': u'\u897f\u5357\u533a', u'id': 133}, {u'province': u'\u5e7f\u897f', u'name': u'\u67f3\u5dde', u'pinyin': u'liuzhou', u'py': u'liuzhou', u'pname': u'\u534e\u5357\u533a', u'id': 235}, {u'province': u'\u7518\u8083', u'name': u'\u9647\u5357', u'pinyin': u'longnan', u'py': u'ln', u'pname': u'\u897f\u5317\u533a', u'id': 62}, {u'province': u'\u798f\u5efa', u'name': u'\u9f99\u5ca9', u'pinyin': u'longyan', u'py': u'ly', u'pname': u'\u534e\u5357\u533a', u'id': 210}, {u'province': u'\u6e56\u5357', u'name': u'\u5a04\u5e95', u'pinyin': u'loudi', u'py': u'ld', u'pname': u'\u534e\u4e2d\u533a', u'id': 147}, {u'province': u'\u5b89\u5fbd', u'name': u'\u516d\u5b89', u'pinyin': u'luan', u'py': u'la', u'pname': u'\u534e\u4e1c\u533a', u'id': 306}, {u'province': u'\u6cb3\u5357', u'name': u'\u6f2f\u6cb3', u'pinyin': u'luohe', u'py': u'luohe', u'pname': u'\u534e\u4e2d\u533a', u'id': 111}, {u'province': u'\u6cb3\u5357', u'name': u'\u6d1b\u9633', u'pinyin': u'luoyang', u'py': u'luoyang', u'pname': u'\u534e\u4e2d\u533a', u'id': 98}, {u'province': u'\u56db\u5ddd', u'name': u'\u6cf8\u5dde', u'pinyin': u'luzhou', u'py': u'luzhou', u'pname': u'\u897f\u5357\u533a', u'id': 164}, {u'province': u'\u5c71\u897f', u'name': u'\u5415\u6881', u'pinyin': u'lvliang', u'py': u'lvliang', u'pname': u'\u534e\u5317\u533a', u'id': 46}, {u'province': u'\u5b89\u5fbd', u'name': u'\u9a6c\u978d\u5c71', u'pinyin': u'maanshan', u'py': u'mas', u'pname': u'\u534e\u4e1c\u533a', u'id': 307}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u8302\u540d', u'pinyin': u'maoming', u'py': u'mm', u'pname': u'\u534e\u5357\u533a', u'id': 259}, {u'province': u'\u56db\u5ddd', u'name': u'\u7709\u5c71', u'pinyin': u'meishan', u'py': u'ms', u'pname': u'\u897f\u5357\u533a', u'id': 166}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6885\u5dde', u'pinyin': u'meizhou', u'py': u'mz', u'pname': u'\u534e\u5357\u533a', u'id': 263}, {u'province': u'\u56db\u5ddd', u'name': u'\u7ef5\u9633', u'pinyin': u'mianyang', u'py': u'my', u'pname': u'\u897f\u5357\u533a', u'id': 168}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u7261\u4e39\u6c5f', u'pinyin': u'mudanjiang', u'py': u'mdj', u'pname': u'\u4e1c\u5317\u533a', u'id': 276}, {u'province': u'\u6c5f\u897f', u'name': u'\u5357\u660c', u'pinyin': u'nanchang', u'py': u'nc', u'pname': u'\u534e\u4e2d\u533a', u'id': 116}, {u'province': u'\u56db\u5ddd', u'name': u'\u5357\u5145', u'pinyin': u'nanchong', u'py': u'nanchong', u'pname': u'\u897f\u5357\u533a', u'id': 170}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5357\u4eac', u'pinyin': u'nanjing', u'py': u'nj', u'pname': u'\u534e\u4e1c\u533a', u'id': 321}, {u'province': u'\u5e7f\u897f', u'name': u'\u5357\u5b81', u'pinyin': u'nanning', u'py': u'nn', u'pname': u'\u534e\u5357\u533a', u'id': 222}, {u'province': u'\u798f\u5efa', u'name': u'\u5357\u5e73', u'pinyin': u'nanping', u'py': u'np', u'pname': u'\u534e\u5357\u533a', u'id': 213}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5357\u901a', u'pinyin': u'nantong', u'py': u'nt', u'pname': u'\u534e\u4e1c\u533a', u'id': 325}, {u'province': u'\u6cb3\u5357', u'name': u'\u5357\u9633', u'pinyin': u'nanyang', u'py': u'ny', u'pname': u'\u534e\u4e2d\u533a', u'id': 113}, {u'province': u'\u897f\u85cf', u'name': u'\u90a3\u66f2', u'pinyin': u'naqu', u'py': u'nq', u'pname': u'\u897f\u5357\u533a', u'id': 117}, {u'province': u'\u56db\u5ddd', u'name': u'\u5185\u6c5f', u'pinyin': u'neijiang', u'py': u'scnj', u'pname': u'\u897f\u5357\u533a', u'id': 171}, {u'province': u'\u6d59\u6c5f', u'name': u'\u5b81\u6ce2', u'pinyin': u'ningbo', u'py': u'nb', u'pname': u'\u534e\u4e1c\u533a', u'id': 315}, {u'province': u'\u798f\u5efa', u'name': u'\u5b81\u5fb7', u'pinyin': u'ningde', u'py': u'nd', u'pname': u'\u534e\u5357\u533a', u'id': 215}, {u'province': u'\u4e91\u5357', u'name': u'\u6012\u6c5f', u'pinyin': u'nujiang', u'py': u'nujiang', u'pname': u'\u897f\u5357\u533a', u'id': 149}, {u'province': u'\u8fbd\u5b81', u'name': u'\u76d8\u9526', u'pinyin': u'panjin', u'py': u'pj', u'pname': u'\u4e1c\u5317\u533a', u'id': 212}, {u'province': u'\u56db\u5ddd', u'name': u'\u6500\u679d\u82b1', u'pinyin': u'panzhihua', u'py': u'panzhihua', u'pname': u'\u897f\u5357\u533a', u'id': 173}, {u'province': u'\u6cb3\u5357', u'name': u'\u5e73\u9876\u5c71', u'pinyin': u'pingdingshan', u'py': u'pds', u'pname': u'\u534e\u4e2d\u533a', u'id': 352}, {u'province': u'\u7518\u8083', u'name': u'\u5e73\u51c9', u'pinyin': u'pingliang', u'py': u'pl', u'pname': u'\u897f\u5317\u533a', u'id': 63}, {u'province': u'\u6c5f\u897f', u'name': u'\u840d\u4e61', u'pinyin': u'pingxiang', u'py': u'px', u'pname': u'\u534e\u4e2d\u533a', u'id': 124}, {u'province': u'\u4e91\u5357', u'name': u'\u666e\u6d31', u'pinyin': u'puer', u'py': u'pe', u'pname': u'\u897f\u5357\u533a', u'id': 1008}, {u'province': u'\u798f\u5efa', u'name': u'\u8386\u7530', u'pinyin': u'putian', u'py': u'pt', u'pname': u'\u534e\u5357\u533a', u'id': 217}, {u'province': u'\u6cb3\u5357', u'name': u'\u6fee\u9633', u'pinyin': u'puyang', u'py': u'puyang', u'pname': u'\u534e\u4e2d\u533a', u'id': 101}, {u'province': u'\u6cb3\u5317', u'name': u'\u8fc1\u5b89', u'pinyin': u'qianan', u'py': u'qa', u'pname': u'\u534e\u5317\u533a', u'id': 83}, {u'province': u'\u5c71\u4e1c', u'name': u'\u9752\u5c9b', u'pinyin': u'qingdao', u'py': u'qd', u'pname': u'\u534e\u4e1c\u533a', u'id': 7}, {u'province': u'\u7518\u8083', u'name': u'\u5e86\u9633', u'pinyin': u'qingyang', u'py': u'qingyang', u'pname': u'\u897f\u5317\u533a', u'id': 64}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6e05\u8fdc', u'pinyin': u'qingyuan', u'py': u'qingyuan', u'pname': u'\u534e\u5357\u533a', u'id': 265}, {u'province': u'\u6cb3\u5317', u'name': u'\u79e6\u7687\u5c9b', u'pinyin': u'qinhuangdao', u'py': u'qhd', u'pname': u'\u534e\u5317\u533a', u'id': 350}, {u'province': u'\u5e7f\u897f', u'name': u'\u94a6\u5dde', u'pinyin': u'qinzhou', u'py': u'qinzhou', u'pname': u'\u534e\u5357\u533a', u'id': 237}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u9f50\u9f50\u54c8\u5c14', u'pinyin': u'qiqihaer', u'py': u'qqhr', u'pname': u'\u4e1c\u5317\u533a', u'id': 260}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u4e03\u53f0\u6cb3', u'pinyin': u'qitaihe', u'py': u'qth', u'pname': u'\u4e1c\u5317\u533a', u'id': 281}, {u'province': u'\u798f\u5efa', u'name': u'\u6cc9\u5dde', u'pinyin': u'quanzhou', u'py': u'qz', u'pname': u'\u534e\u5357\u533a', u'id': 218}, {u'province': u'\u4e91\u5357', u'name': u'\u66f2\u9756', u'pinyin': u'qujing', u'py': u'qj', u'pname': u'\u897f\u5357\u533a', u'id': 150}, {u'province': u'\u6d59\u6c5f', u'name': u'\u8862\u5dde', u'pinyin': u'quzhou', u'py': u'quzhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 357}, {u'province': u'\u897f\u85cf', u'name': u'\u65e5\u5580\u5219', u'pinyin': u'rikaze', u'py': u'rkz', u'pname': u'\u897f\u5357\u533a', u'id': 119}, {u'province': u'\u5c71\u4e1c', u'name': u'\u65e5\u7167', u'pinyin': u'rizhao', u'py': u'rizhao', u'pname': u'\u534e\u4e1c\u533a', u'id': 342}, {u'province': u'\u6cb3\u5357', u'name': u'\u4e09\u95e8\u5ce1', u'pinyin': u'sanmenxia', u'py': u'smx', u'pname': u'\u534e\u4e2d\u533a', u'id': 353}, {u'province': u'\u798f\u5efa', u'name': u'\u4e09\u660e', u'pinyin': u'sanming', u'py': u'sm', u'pname': u'\u534e\u5357\u533a', u'id': 219}, {u'province': u'\u6d77\u5357', u'name': u'\u4e09\u4e9a', u'pinyin': u'sanya', u'py': u'sanya', u'pname': u'\u534e\u5317\u533a', u'id': 205}, {u'province': u'\u9655\u897f', u'name': u'\u5546\u6d1b', u'pinyin': u'shagnluo', u'py': u'sl', u'pname': u'\u897f\u5317\u533a', u'id': 73}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u4e0a\u6d77', u'pinyin': u'shanghai', u'py': u'sh', u'pname': u'\u76f4\u8f96\u5e02', u'id': 295}, {u'province': u'\u6cb3\u5357', u'name': u'\u5546\u4e18', u'pinyin': u'shangqiu', u'py': u'sq', u'pname': u'\u534e\u4e2d\u533a', u'id': 103}, {u'province': u'\u6c5f\u897f', u'name': u'\u4e0a\u9976', u'pinyin': u'shangrao', u'py': u'sr', u'pname': u'\u534e\u4e2d\u533a', u'id': 125}, {u'province': u'\u897f\u85cf', u'name': u'\u5c71\u5357', u'pinyin': u'shannan', u'py': u'sn', u'pname': u'\u897f\u5357\u533a', u'id': 121}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6c55\u5934', u'pinyin': u'shantou', u'py': u'st', u'pname': u'\u534e\u5357\u533a', u'id': 266}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6c55\u5c3e', u'pinyin': u'shanwei', u'py': u'sw', u'pname': u'\u534e\u5357\u533a', u'id': 267}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u97f6\u5173', u'pinyin': u'shaoguan', u'py': u'sg', u'pname': u'\u534e\u5357\u533a', u'id': 268}, {u'province': u'\u6d59\u6c5f', u'name': u'\u7ecd\u5174', u'pinyin': u'shaoxing', u'py': u'sx', u'pname': u'\u534e\u4e1c\u533a', u'id': 316}, {u'province': u'\u6e56\u5357', u'name': u'\u90b5\u9633', u'pinyin': u'shaoyang', u'py': u'shaoyang', u'pname': u'\u534e\u4e2d\u533a', u'id': 155}, {u'province': u'\u8fbd\u5b81', u'name': u'\u6c88\u9633', u'pinyin': u'shenyang', u'py': u'sy', u'pname': u'\u4e1c\u5317\u533a', u'id': 195}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6df1\u5733', u'pinyin': u'shenzhen', u'py': u'sz', u'pname': u'\u534e\u5357\u533a', u'id': 269}, {u'province': u'\u6cb3\u5317', u'name': u'\u77f3\u5bb6\u5e84', u'pinyin': u'shijiazhuang', u'py': u'sjz', u'pname': u'\u534e\u5317\u533a', u'id': 349}, {u'province': u'\u6e56\u5317', u'name': u'\u5341\u5830', u'pinyin': u'shiyan', u'py': u'shiyan', u'pname': u'\u534e\u4e2d\u533a', u'id': 192}, {u'province': u'\u5b81\u590f', u'name': u'\u77f3\u5634\u5c71', u'pinyin': u'shizuishan', u'py': u'szs', u'pname': u'\u897f\u5317\u533a', u'id': 102}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u53cc\u9e2d\u5c71', u'pinyin': u'shuangyashan', u'py': u'sys', u'pname': u'\u4e1c\u5317\u533a', u'id': 283}, {u'province': u'\u5c71\u897f', u'name': u'\u6714\u5dde', u'pinyin': u'shuozhou', u'py': u'shuozhou', u'pname': u'\u534e\u5317\u533a', u'id': 50}, {u'province': u'\u4e91\u5357', u'name': u'\u601d\u8305', u'pinyin': u'simao', u'py': u'simao', u'pname': u'\u897f\u5357\u533a', u'id': 151}, {u'province': u'\u5409\u6797', u'name': u'\u56db\u5e73', u'pinyin': u'siping', u'py': u'sp', u'pname': u'\u4e1c\u5317\u533a', u'id': 186}, {u'province': u'\u5409\u6797', u'name': u'\u677e\u539f', u'pinyin': u'songyuan', u'py': u'songyuan', u'pname': u'\u4e1c\u5317\u533a', u'id': 188}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u7ee5\u5316', u'pinyin': u'suihua', u'py': u'suihua', u'pname': u'\u4e1c\u5317\u533a', u'id': 278}, {u'province': u'\u56db\u5ddd', u'name': u'\u9042\u5b81', u'pinyin': u'suining', u'py': u'suining', u'pname': u'\u897f\u5357\u533a', u'id': 174}, {u'province': u'\u6e56\u5317', u'name': u'\u968f\u5dde', u'pinyin': u'suizhou', u'py': u'suizhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 193}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5bbf\u8fc1', u'pinyin': u'suqian', u'py': u'suqian', u'pname': u'\u534e\u4e1c\u533a', u'id': 329}, {u'province': u'\u6c5f\u82cf', u'name': u'\u82cf\u5dde', u'pinyin': u'suzhou', u'py': u'su', u'pname': u'\u534e\u4e1c\u533a', u'id': 326}, {u'province': u'\u5b89\u5fbd', u'name': u'\u5bbf\u5dde', u'pinyin': u'suzhoushi', u'py': u'suzhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 309}, {u'province': u'\u65b0\u7586', u'name': u'\u5854\u57ce', u'pinyin': u'tacheng', u'py': u'tacheng', u'pname': u'\u897f\u5317\u533a', u'id': 247}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6cf0\u5b89', u'pinyin': u'taian', u'py': u'ta', u'pname': u'\u534e\u4e1c\u533a', u'id': 343}, {u'province': u'\u5c71\u897f', u'name': u'\u592a\u539f', u'pinyin': u'taiyuan', u'py': u'ty', u'pname': u'\u534e\u5317\u533a', u'id': 30}, {u'province': u'\u6c5f\u82cf', u'name': u'\u6cf0\u5dde', u'pinyin': u'taizhou', u'py': u'taizhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 327}, {u'province': u'\u6d59\u6c5f', u'name': u'\u53f0\u5dde', u'pinyin': u'taizhoushi', u'py': u'tz', u'pname': u'\u534e\u4e1c\u533a', u'id': 317}, {u'province': u'\u6cb3\u5317', u'name': u'\u5510\u5c71', u'pinyin': u'tangshan', u'py': u'ts', u'pname': u'\u534e\u5317\u533a', u'id': 85}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6ed5\u5dde', u'pinyin': u'tengzhou', u'py': u'tengzhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 1100}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5929\u6d25', u'pinyin': u'tianjin', u'py': u'tj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 11}, {u'province': u'\u7518\u8083', u'name': u'\u5929\u6c34', u'pinyin': u'tianshui', u'py': u'tianshui', u'pname': u'\u897f\u5317\u533a', u'id': 65}, {u'province': u'\u8fbd\u5b81', u'name': u'\u94c1\u5cad', u'pinyin': u'tieling', u'py': u'tl', u'pname': u'\u4e1c\u5317\u533a', u'id': 214}, {u'province': u'\u9655\u897f', u'name': u'\u94dc\u5ddd', u'pinyin': u'tongchuan', u'py': u'tc', u'pname': u'\u897f\u5317\u533a', u'id': 74}, {u'province': u'\u5409\u6797', u'name': u'\u901a\u5316', u'pinyin': u'tonghua', u'py': u'th', u'pname': u'\u4e1c\u5317\u533a', u'id': 190}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u901a\u8fbd', u'pinyin': u'tongliao', u'py': u'tongliao', u'pname': u'\u534e\u5317\u533a', u'id': 292}, {u'province': u'\u5b89\u5fbd', u'name': u'\u94dc\u9675', u'pinyin': u'tongling', u'py': u'tongling', u'pname': u'\u534e\u4e1c\u533a', u'id': 1007}, {u'province': u'\u8d35\u5dde', u'name': u'\u94dc\u4ec1', u'pinyin': u'tongren', u'py': u'tr', u'pname': u'\u897f\u5357\u533a', u'id': 134}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u56e2\u8f661', u'pinyin': u'tuanche1', u'py': u'tuanche1', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1094}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u56e2\u8f662', u'pinyin': u'tuanche2', u'py': u'tuanche2', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1095}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u56e2\u8f663', u'pinyin': u'tuanche3', u'py': u'tuanche3', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1096}, {u'province': u'\u65b0\u7586', u'name': u'\u5410\u9c81\u756a', u'pinyin': u'tulufan', u'py': u'tlf', u'pname': u'\u897f\u5317\u533a', u'id': 248}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6f4d\u574a', u'pinyin': u'weifang', u'py': u'wf', u'pname': u'\u534e\u4e1c\u533a', u'id': 345}, {u'province': u'\u5c71\u4e1c', u'name': u'\u5a01\u6d77', u'pinyin': u'weihai', u'py': u'weihai', u'pname': u'\u534e\u4e1c\u533a', u'id': 344}, {u'province': u'\u9655\u897f', u'name': u'\u6e2d\u5357', u'pinyin': u'weinan', u'py': u'wn', u'pname': u'\u897f\u5317\u533a', u'id': 76}, {u'province': u'\u4e91\u5357', u'name': u'\u6587\u5c71', u'pinyin': u'wenshan', u'py': u'ws', u'pname': u'\u897f\u5357\u533a', u'id': 152}, {u'province': u'\u6d59\u6c5f', u'name': u'\u6e29\u5dde', u'pinyin': u'wenzhou', u'py': u'wz', u'pname': u'\u534e\u4e1c\u533a', u'id': 318}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u4e4c\u6d77', u'pinyin': u'wuhai', u'py': u'wuhai', u'pname': u'\u534e\u5317\u533a', u'id': 293}, {u'province': u'\u6e56\u5317', u'name': u'\u6b66\u6c49', u'pinyin': u'wuhan', u'py': u'wh', u'pname': u'\u534e\u4e2d\u533a', u'id': 177}, {u'province': u'\u5b89\u5fbd', u'name': u'\u829c\u6e56', u'pinyin': u'wuhu', u'py': u'whu', u'pname': u'\u534e\u4e1c\u533a', u'id': 308}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u4e4c\u5170\u5bdf\u5e03', u'pinyin': u'wulanchabu', u'py': u'wlcb', u'pname': u'\u534e\u5317\u533a', u'id': 294}, {u'province': u'\u65b0\u7586', u'name': u'\u4e4c\u9c81\u6728\u9f50', u'pinyin': u'wulumuqi', u'py': u'xj', u'pname': u'\u897f\u5317\u533a', u'id': 231}, {u'province': u'\u7518\u8083', u'name': u'\u6b66\u5a01', u'pinyin': u'wuwei', u'py': u'wuwei', u'pname': u'\u897f\u5317\u533a', u'id': 66}, {u'province': u'\u6c5f\u82cf', u'name': u'\u65e0\u9521', u'pinyin': u'wuxi', u'py': u'wx', u'pname': u'\u534e\u4e1c\u533a', u'id': 328}, {u'province': u'\u5b81\u590f', u'name': u'\u5434\u5fe0', u'pinyin': u'wuzhong', u'py': u'wuzhong', u'pname': u'\u897f\u5317\u533a', u'id': 105}, {u'province': u'\u5e7f\u897f', u'name': u'\u68a7\u5dde', u'pinyin': u'wuzhou', u'py': u'wuzhou', u'pname': u'\u534e\u5357\u533a', u'id': 238}, {u'province': u'\u798f\u5efa', u'name': u'\u53a6\u95e8', u'pinyin': u'xiamen', u'py': u'xm', u'pname': u'\u534e\u5357\u533a', u'id': 220}, {u'province': u'\u9655\u897f', u'name': u'\u897f\u5b89', u'pinyin': u'xian', u'py': u'xa', u'pname': u'\u897f\u5317\u533a', u'id': 68}, {u'province': u'\u6e56\u5317', u'name': u'\u8944\u6a0a', u'pinyin': u'xiangfan', u'py': u'sf', u'pname': u'\u534e\u4e2d\u533a', u'id': 196}, {u'province': u'\u6e56\u5357', u'name': u'\u6e58\u6f6d', u'pinyin': u'xiangtan', u'py': u'xiangtan', u'pname': u'\u534e\u4e2d\u533a', u'id': 160}, {u'province': u'\u6e56\u5357', u'name': u'\u6e58\u897f', u'pinyin': u'xiangxi', u'py': u'xiangxi', u'pname': u'\u534e\u4e2d\u533a', u'id': 161}, {u'province': u'\u6e56\u5317', u'name': u'\u54b8\u5b81', u'pinyin': u'xianning', u'py': u'xianning', u'pname': u'\u534e\u4e2d\u533a', u'id': 194}, {u'province': u'\u9655\u897f', u'name': u'\u54b8\u9633', u'pinyin': u'xianyang', u'py': u'xianyang', u'pname': u'\u897f\u5317\u533a', u'id': 78}, {u'province': u'\u6e56\u5317', u'name': u'\u5b5d\u611f', u'pinyin': u'xiaogan', u'py': u'xiaogan', u'pname': u'\u534e\u4e2d\u533a', u'id': 198}, {u'province': u'\u5185\u8499\u53e4', u'name': u'\u9521\u6797\u90ed\u52d2\u76df', u'pinyin': u'xilingoulemeng', u'py': u'xlglm', u'pname': u'\u534e\u5317\u533a', u'id': 1011}, {u'province': u'\u6cb3\u5317', u'name': u'\u90a2\u53f0', u'pinyin': u'xingtai', u'py': u'xt', u'pname': u'\u534e\u5317\u533a', u'id': 87}, {u'province': u'\u9752\u6d77', u'name': u'\u897f\u5b81', u'pinyin': u'xining', u'py': u'xn', u'pname': u'\u897f\u5317\u533a', u'id': 84}, {u'province': u'\u6cb3\u5357', u'name': u'\u65b0\u4e61', u'pinyin': u'xinxiang', u'py': u'xx', u'pname': u'\u534e\u4e2d\u533a', u'id': 104}, {u'province': u'\u6cb3\u5357', u'name': u'\u4fe1\u9633', u'pinyin': u'xinyang', u'py': u'xy', u'pname': u'\u534e\u4e2d\u533a', u'id': 106}, {u'province': u'\u6c5f\u897f', u'name': u'\u65b0\u4f59', u'pinyin': u'xinyu', u'py': u'xinyu', u'pname': u'\u534e\u4e2d\u533a', u'id': 126}, {u'province': u'\u5c71\u897f', u'name': u'\u5ffb\u5dde', u'pinyin': u'xinzhou', u'py': u'xinzhou', u'pname': u'\u534e\u5317\u533a', u'id': 51}, {u'province': u'\u5b89\u5fbd', u'name': u'\u5ba3\u57ce', u'pinyin': u'xuancheng', u'py': u'xuancheng', u'pname': u'\u534e\u4e1c\u533a', u'id': 310}, {u'province': u'\u6cb3\u5357', u'name': u'\u8bb8\u660c', u'pinyin': u'xuchang', u'py': u'xc', u'pname': u'\u534e\u4e2d\u533a', u'id': 107}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5f90\u5dde', u'pinyin': u'xuzhou', u'py': u'xz', u'pname': u'\u534e\u4e1c\u533a', u'id': 330}, {u'province': u'\u56db\u5ddd', u'name': u'\u96c5\u5b89', u'pinyin': u'yaan', u'py': u'ya', u'pname': u'\u897f\u5357\u533a', u'id': 175}, {u'province': u'\u9655\u897f', u'name': u'\u5ef6\u5b89', u'pinyin': u'yanan', u'py': u'yanan', u'pname': u'\u897f\u5317\u533a', u'id': 79}, {u'province': u'\u5409\u6797', u'name': u'\u5ef6\u8fb9', u'pinyin': u'yanbian', u'py': u'yanbian', u'pname': u'\u4e1c\u5317\u533a', u'id': 191}, {u'province': u'\u6c5f\u82cf', u'name': u'\u76d0\u57ce', u'pinyin': u'yancheng', u'py': u'yancheng', u'pname': u'\u534e\u4e1c\u533a', u'id': 331}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u9633\u6c5f', u'pinyin': u'yangjiang', u'py': u'yj', u'pname': u'\u534e\u5357\u533a', u'id': 270}, {u'province': u'\u5c71\u897f', u'name': u'\u9633\u6cc9', u'pinyin': u'yangquan', u'py': u'yq', u'pname': u'\u534e\u5317\u533a', u'id': 52}, {u'province': u'\u6c5f\u82cf', u'name': u'\u626c\u5dde', u'pinyin': u'yangzhou', u'py': u'yz', u'pname': u'\u534e\u4e1c\u533a', u'id': 332}, {u'province': u'\u5c71\u4e1c', u'name': u'\u70df\u53f0', u'pinyin': u'yantai', u'py': u'yt', u'pname': u'\u534e\u4e1c\u533a', u'id': 346}, {u'province': u'\u56db\u5ddd', u'name': u'\u5b9c\u5bbe', u'pinyin': u'yibin', u'py': u'yb', u'pname': u'\u897f\u5357\u533a', u'id': 176}, {u'province': u'\u6e56\u5317', u'name': u'\u5b9c\u660c', u'pinyin': u'yichang', u'py': u'yc', u'pname': u'\u534e\u4e2d\u533a', u'id': 199}, {u'province': u'\u6c5f\u897f', u'name': u'\u5b9c\u6625', u'pinyin': u'yichun', u'py': u'yichun', u'pname': u'\u534e\u4e2d\u533a', u'id': 128}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u4f0a\u6625', u'pinyin': u'yichunshi', u'py': u'yich', u'pname': u'\u4e1c\u5317\u533a', u'id': 280}, {u'province': u'\u65b0\u7586', u'name': u'\u4f0a\u7281', u'pinyin': u'yili', u'py': u'yili', u'pname': u'\u897f\u5317\u533a', u'id': 250}, {u'province': u'\u5b81\u590f', u'name': u'\u94f6\u5ddd', u'pinyin': u'yinchuan', u'py': u'yinchuan', u'pname': u'\u897f\u5317\u533a', u'id': 99}, {u'province': u'\u8fbd\u5b81', u'name': u'\u8425\u53e3', u'pinyin': u'yingkou', u'py': u'yk', u'pname': u'\u4e1c\u5317\u533a', u'id': 216}, {u'province': u'\u6c5f\u897f', u'name': u'\u9e70\u6f6d', u'pinyin': u'yingtan', u'py': u'yingtan', u'pname': u'\u534e\u4e2d\u533a', u'id': 127}, {u'province': u'\u6e56\u5357', u'name': u'\u76ca\u9633', u'pinyin': u'yiyang', u'py': u'yiyang', u'pname': u'\u534e\u4e2d\u533a', u'id': 165}, {u'province': u'\u6e56\u5357', u'name': u'\u6c38\u5dde', u'pinyin': u'yongzhou', u'py': u'yongzhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 167}, {u'province': u'\u6e56\u5357', u'name': u'\u5cb3\u9633', u'pinyin': u'yueyang', u'py': u'yy', u'pname': u'\u534e\u4e2d\u533a', u'id': 169}, {u'province': u'\u9655\u897f', u'name': u'\u6986\u6797', u'pinyin': u'yulin', u'py': u'yl', u'pname': u'\u897f\u5317\u533a', u'id': 81}, {u'province': u'\u5e7f\u897f', u'name': u'\u7389\u6797', u'pinyin': u'yulinshi', u'py': u'yulin', u'pname': u'\u534e\u5357\u533a', u'id': 240}, {u'province': u'\u5c71\u897f', u'name': u'\u8fd0\u57ce', u'pinyin': u'yuncheng', u'py': u'yuncheng', u'pname': u'\u534e\u5317\u533a', u'id': 53}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u4e91\u6d6e', u'pinyin': u'yunfu', u'py': u'yf', u'pname': u'\u534e\u5357\u533a', u'id': 271}, {u'province': u'\u9752\u6d77', u'name': u'\u7389\u6811', u'pinyin': u'yushu', u'py': u'ys', u'pname': u'\u897f\u5317\u533a', u'id': 94}, {u'province': u'\u4e91\u5357', u'name': u'\u7389\u6eaa', u'pinyin': u'yuxi', u'py': u'yx', u'pname': u'\u897f\u5357\u533a', u'id': 153}, {u'province': u'\u5c71\u4e1c', u'name': u'\u67a3\u5e84', u'pinyin': u'zaozhuang', u'py': u'zaozhuang', u'pname': u'\u534e\u4e1c\u533a', u'id': 347}, {u'province': u'\u6e56\u5357', u'name': u'\u5f20\u5bb6\u754c', u'pinyin': u'zhangjiajie', u'py': u'zjj', u'pname': u'\u534e\u4e2d\u533a', u'id': 356}, {u'province': u'\u6cb3\u5317', u'name': u'\u5f20\u5bb6\u53e3', u'pinyin': u'zhangjiakou', u'py': u'zjk', u'pname': u'\u534e\u5317\u533a', u'id': 351}, {u'province': u'\u7518\u8083', u'name': u'\u5f20\u6396', u'pinyin': u'zhangye', u'py': u'zhangye', u'pname': u'\u897f\u5317\u533a', u'id': 67}, {u'province': u'\u798f\u5efa', u'name': u'\u6f33\u5dde', u'pinyin': u'zhangzhou', u'py': u'zhangzhou', u'pname': u'\u534e\u5357\u533a', u'id': 221}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6e5b\u6c5f', u'pinyin': u'zhanjiang', u'py': u'zhanjiang', u'pname': u'\u534e\u5357\u533a', u'id': 272}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u8087\u5e86', u'pinyin': u'zhaoqing', u'py': u'zq', u'pname': u'\u534e\u5357\u533a', u'id': 273}, {u'province': u'\u4e91\u5357', u'name': u'\u662d\u901a', u'pinyin': u'zhaotong', u'py': u'zt', u'pname': u'\u897f\u5357\u533a', u'id': 154}, {u'province': u'\u6cb3\u5357', u'name': u'\u90d1\u5dde', u'pinyin': u'zhengzhou', u'py': u'zz', u'pname': u'\u534e\u4e2d\u533a', u'id': 90}, {u'province': u'\u6c5f\u82cf', u'name': u'\u9547\u6c5f', u'pinyin': u'zhenjiang', u'py': u'zj', u'pname': u'\u534e\u4e1c\u533a', u'id': 333}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u4e2d\u5c71', u'pinyin': u'zhongshan', u'py': u'zs', u'pname': u'\u534e\u5357\u533a', u'id': 274}, {u'province': u'\u5b81\u590f', u'name': u'\u4e2d\u536b', u'pinyin': u'zhongwei', u'py': u'zw', u'pname': u'\u897f\u5317\u533a', u'id': 109}, {u'province': u'\u6cb3\u5357', u'name': u'\u5468\u53e3', u'pinyin': u'zhoukou', u'py': u'zk', u'pname': u'\u534e\u4e2d\u533a', u'id': 108}, {u'province': u'\u6d59\u6c5f', u'name': u'\u821f\u5c71', u'pinyin': u'zhoushan', u'py': u'zhoushan', u'pname': u'\u534e\u4e1c\u533a', u'id': 319}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u73e0\u6d77', u'pinyin': u'zhuhai', u'py': u'zh', u'pname': u'\u534e\u5357\u533a', u'id': 275}, {u'province': u'\u6cb3\u5357', u'name': u'\u9a7b\u9a6c\u5e97', u'pinyin': u'zhumadian', u'py': u'zmd', u'pname': u'\u534e\u4e2d\u533a', u'id': 354}, {u'province': u'\u6e56\u5357', u'name': u'\u682a\u6d32', u'pinyin': u'zhuzhou', u'py': u'zhuzhou', u'pname': u'\u534e\u4e2d\u533a', u'id': 172}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6dc4\u535a', u'pinyin': u'zibo', u'py': u'zb', u'pname': u'\u534e\u4e1c\u533a', u'id': 348}, {u'province': u'\u8d35\u5dde', u'name': u'\u9075\u4e49', u'pinyin': u'zunyi', u'py': u'zunyi', u'pname': u'\u897f\u5357\u533a', u'id': 136}], u'hotCitys': [{u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5317\u4eac', u'pinyin': u'beijing', u'py': u'bj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 10}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5929\u6d25', u'pinyin': u'tianjin', u'py': u'tj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 11}, {u'province': u'\u56db\u5ddd', u'name': u'\u6210\u90fd', u'pinyin': u'chengdu', u'py': u'cd', u'pname': u'\u897f\u5357\u533a', u'id': 156}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u4e0a\u6d77', u'pinyin': u'shanghai', u'py': u'sh', u'pname': u'\u76f4\u8f96\u5e02', u'id': 295}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u5e7f\u5dde', u'pinyin': u'guangzhou', u'py': u'gz', u'pname': u'\u534e\u5357\u533a', u'id': 249}, {u'province': u'\u8fbd\u5b81', u'name': u'\u6c88\u9633', u'pinyin': u'shenyang', u'py': u'sy', u'pname': u'\u4e1c\u5317\u533a', u'id': 195}, {u'province': u'\u6e56\u5317', u'name': u'\u6b66\u6c49', u'pinyin': u'wuhan', u'py': u'wh', u'pname': u'\u534e\u4e2d\u533a', u'id': 177}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5357\u4eac', u'pinyin': u'nanjing', u'py': u'nj', u'pname': u'\u534e\u4e1c\u533a', u'id': 321}]}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getHotCity: 获取热门城市接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: {u'msg': u'\u8c03\u7528\u6210\u529f', u'code': 10000, u'result': [{u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5317\u4eac', u'pinyin': u'beijing', u'py': u'bj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 10}]}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getSysConfig: 获取系统配置选项接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: {u'code': 10000, u'result': {u'ssg_order_style': [{u'code': u'1', u'name': u'\u65b0\u8f66\u5168\u6b3e'}, {u'code': u'2', u'name': u'\u65b0\u8f66\u8d37\u6b3e'}, {u'code': u'3', u'name': u'\u7f6e\u6362\u5168\u6b3e'}, {u'code': u'4', u'name': u'\u7f6e\u6362\u8d37\u6b3e'}], u'ssg_order_time': [{u'code': u'1', u'name': u'7\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'2', u'name': u'14\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'3', u'name': u'30\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'4', u'name': u'30\u5929\u540e\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'5', u'name': u'\u77ed\u671f\u5185\u6682\u65e0\u8d2d\u8f66\u8ba1\u5212'}]}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getTCCity: 获取提车城市接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: {u'msg': u'\u8c03\u7528\u6210\u529f', u'code': 10000, u'result': [{u'province': u'\u76f4\u8f96\u5e02', u'citycode': u'000800090010', u'name': u'\u5317\u4eac', u'pinyin': u'beijing', u'py': u'bj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 10}, {u'province': u'\u6d59\u6c5f', u'citycode': u'001200160311', u'name': u'\u676d\u5dde', u'pinyin': u'hangzhou', u'py': u'hz', u'pname': u'\u534e\u4e1c\u533a', u'id': 311}, {u'province': u'\u6c5f\u82cf', u'citycode': u'001200150321', u'name': u'\u5357\u4eac', u'pinyin': u'nanjing', u'py': u'nj', u'pname': u'\u534e\u4e1c\u533a', u'id': 321}, {u'province': u'\u6d59\u6c5f', u'citycode': u'001200160315', u'name': u'\u5b81\u6ce2', u'pinyin': u'ningbo', u'py': u'nb', u'pname': u'\u534e\u4e1c\u533a', u'id': 315}, {u'province': u'\u76f4\u8f96\u5e02', u'citycode': u'000800090295', u'name': u'\u4e0a\u6d77', u'pinyin': u'shanghai', u'py': u'sh', u'pname': u'\u76f4\u8f96\u5e02', u'id': 295}, {u'province': u'\u76f4\u8f96\u5e02', u'citycode': u'900000001094', u'name': u'\u56e2\u8f661', u'pinyin': u'tuanche1', u'py': u'tuanche1', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1094}, {u'province': u'\u76f4\u8f96\u5e02', u'citycode': u'900000001096', u'name': u'\u56e2\u8f663', u'pinyin': u'tuanche3', u'py': u'tuanche3', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1096}]}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.12' class='none'>
+    <td class='failCase'><div class='testcase'>test_get_All_City: 获取所有城市列表接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.12')" >
+        fail</a>
+
+    <div id='div_ft1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.12: {u'msg': u'\u672a\u77e5\u7cfb\u7edf\u5f02\u5e38', u'code': 1}
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Mysite\TC_TEST\test_case\BaseData.py", line 226, in test_get_All_City
+    self.assertEqual(result.get('code'), 10000)
+AssertionError: 1 != 10000
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_get_all_city_open_status: 获取开通站点城市接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: {u'msg': u'\u8c03\u7528\u6210\u529f', u'code': 10000, u'result': [{u'province': u'\u8fbd\u5b81', u'name': u'\u978d\u5c71', u'pinyin': u'anshan', u'py': u'as', u'pname': u'\u4e1c\u5317\u533a', u'id': 197}, {u'province': u'\u6cb3\u5317', u'name': u'\u4fdd\u5b9a', u'pinyin': u'baoding', u'py': u'bd', u'pname': u'\u534e\u5317\u533a', u'id': 70}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5317\u4eac', u'pinyin': u'beijing', u'py': u'bj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 10}, {u'province': u'\u5409\u6797', u'name': u'\u957f\u6625', u'pinyin': u'changchun', u'py': u'cc', u'pname': u'\u4e1c\u5317\u533a', u'id': 178}, {u'province': u'\u6e56\u5357', u'name': u'\u957f\u6c99', u'pinyin': u'changsha', u'py': u'cs', u'pname': u'\u534e\u4e2d\u533a', u'id': 132}, {u'province': u'\u56db\u5ddd', u'name': u'\u6210\u90fd', u'pinyin': u'chengdu', u'py': u'cd', u'pname': u'\u897f\u5357\u533a', u'id': 156}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u91cd\u5e86', u'pinyin': u'chongqing', u'py': u'cq', u'pname': u'\u76f4\u8f96\u5e02', u'id': 1005}, {u'province': u'\u8fbd\u5b81', u'name': u'\u5927\u8fde', u'pinyin': u'dalian', u'py': u'dl', u'pname': u'\u4e1c\u5317\u533a', u'id': 201}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u4f5b\u5c71', u'pinyin': u'foshan', u'py': u'fs', u'pname': u'\u534e\u5357\u533a', u'id': 254}, {u'province': u'\u5b89\u5fbd', u'name': u'\u961c\u9633', u'pinyin': u'fuyang', u'py': u'fy', u'pname': u'\u534e\u4e1c\u533a', u'id': 302}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u5e7f\u5dde', u'pinyin': u'guangzhou', u'py': u'gz', u'pname': u'\u534e\u5357\u533a', u'id': 249}, {u'province': u'\u9ed1\u9f99\u6c5f', u'name': u'\u54c8\u5c14\u6ee8', u'pinyin': u'haerbin', u'py': u'hrb', u'pname': u'\u4e1c\u5317\u533a', u'id': 258}, {u'province': u'\u6cb3\u5317', u'name': u'\u90af\u90f8', u'pinyin': u'handan', u'py': u'hd', u'pname': u'\u534e\u5317\u533a', u'id': 77}, {u'province': u'\u6d59\u6c5f', u'name': u'\u676d\u5dde', u'pinyin': u'hangzhou', u'py': u'hz', u'pname': u'\u534e\u4e1c\u533a', u'id': 311}, {u'province': u'\u5b89\u5fbd', u'name': u'\u5408\u80a5', u'pinyin': u'hefei', u'py': u'hf', u'pname': u'\u534e\u4e1c\u533a', u'id': 296}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6d4e\u5357', u'pinyin': u'jinan', u'py': u'jn', u'pname': u'\u534e\u4e1c\u533a', u'id': 6}, {u'province': u'\u4e91\u5357', u'name': u'\u6606\u660e', u'pinyin': u'kunming', u'py': u'km', u'pname': u'\u897f\u5357\u533a', u'id': 137}, {u'province': u'\u6cb3\u5317', u'name': u'\u5eca\u574a', u'pinyin': u'langfang', u'py': u'lf', u'pname': u'\u534e\u5317\u533a', u'id': 82}, {u'province': u'\u56db\u5ddd', u'name': u'\u7ef5\u9633', u'pinyin': u'mianyang', u'py': u'my', u'pname': u'\u897f\u5357\u533a', u'id': 168}, {u'province': u'\u6c5f\u897f', u'name': u'\u5357\u660c', u'pinyin': u'nanchang', u'py': u'nc', u'pname': u'\u534e\u4e2d\u533a', u'id': 116}, {u'province': u'\u6c5f\u82cf', u'name': u'\u5357\u4eac', u'pinyin': u'nanjing', u'py': u'nj', u'pname': u'\u534e\u4e1c\u533a', u'id': 321}, {u'province': u'\u6d59\u6c5f', u'name': u'\u5b81\u6ce2', u'pinyin': u'ningbo', u'py': u'nb', u'pname': u'\u534e\u4e1c\u533a', u'id': 315}, {u'province': u'\u5c71\u4e1c', u'name': u'\u9752\u5c9b', u'pinyin': u'qingdao', u'py': u'qd', u'pname': u'\u534e\u4e1c\u533a', u'id': 7}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u4e0a\u6d77', u'pinyin': u'shanghai', u'py': u'sh', u'pname': u'\u76f4\u8f96\u5e02', u'id': 295}, {u'province': u'\u8fbd\u5b81', u'name': u'\u6c88\u9633', u'pinyin': u'shenyang', u'py': u'sy', u'pname': u'\u4e1c\u5317\u533a', u'id': 195}, {u'province': u'\u5e7f\u4e1c', u'name': u'\u6df1\u5733', u'pinyin': u'shenzhen', u'py': u'sz', u'pname': u'\u534e\u5357\u533a', u'id': 269}, {u'province': u'\u6cb3\u5317', u'name': u'\u77f3\u5bb6\u5e84', u'pinyin': u'shijiazhuang', u'py': u'sjz', u'pname': u'\u534e\u5317\u533a', u'id': 349}, {u'province': u'\u6c5f\u82cf', u'name': u'\u82cf\u5dde', u'pinyin': u'suzhou', u'py': u'su', u'pname': u'\u534e\u4e1c\u533a', u'id': 326}, {u'province': u'\u5c71\u897f', u'name': u'\u592a\u539f', u'pinyin': u'taiyuan', u'py': u'ty', u'pname': u'\u534e\u5317\u533a', u'id': 30}, {u'province': u'\u5c71\u4e1c', u'name': u'\u6ed5\u5dde', u'pinyin': u'tengzhou', u'py': u'tengzhou', u'pname': u'\u534e\u4e1c\u533a', u'id': 1100}, {u'province': u'\u76f4\u8f96\u5e02', u'name': u'\u5929\u6d25', u'pinyin': u'tianjin', u'py': u'tj', u'pname': u'\u76f4\u8f96\u5e02', u'id': 11}, {u'province': u'\u6d59\u6c5f', u'name': u'\u6e29\u5dde', u'pinyin': u'wenzhou', u'py': u'wz', u'pname': u'\u534e\u4e1c\u533a', u'id': 318}, {u'province': u'\u6e56\u5317', u'name': u'\u6b66\u6c49', u'pinyin': u'wuhan', u'py': u'wh', u'pname': u'\u534e\u4e2d\u533a', u'id': 177}, {u'province': u'\u6c5f\u82cf', u'name': u'\u65e0\u9521', u'pinyin': u'wuxi', u'py': u'wx', u'pname': u'\u534e\u4e1c\u533a', u'id': 328}, {u'province': u'\u9655\u897f', u'name': u'\u897f\u5b89', u'pinyin': u'xian', u'py': u'xa', u'pname': u'\u897f\u5317\u533a', u'id': 68}, {u'province': u'\u6cb3\u5357', u'name': u'\u90d1\u5dde', u'pinyin': u'zhengzhou', u'py': u'zz', u'pname': u'\u534e\u4e2d\u533a', u'id': 90}]}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_get_city: 获取城市接口</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_get_same_price_style: 获取看了又看车型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_group_buy_evaluate: 获取周末团评价列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: {u'msg': u'\u6210\u529f', u'code': 10000, u'result': {u'count': 116, u'commentList': [{u'userName': u'H***2', u'commentDate': u'2015-10-29', u'memberPic': u'http://t.pic.tuanche.com/umapi/head/default/tuantuan01.png', u'content': u'\u56e2\u8f66\u7f51\u7684\u780d\u4ef7\u529b\u5ea6\u975e\u5e38\u68d2\uff0c\u8fd9\u79cd\u70ab\u9177\u7684\u65b9\u5f0f\u548c\u65b0\u5947\u7684\u4f53\u9a8c\u76f8\u6bd4\u8f83\u4f20\u7edf\u7684\u4fc3\u9500\u65b9\u5f0f\u8ba9\u4eba\u6709\u4e00\u79cd\u8033\u76ee\u4e00\u65b0\u7684\u611f\u89c9\uff0c\u660e\u5e74\u6253\u7b97\u6362\u53e6\u5916\u4e00\u8f86\u8f66\uff0c\u4e00\u5b9a\u8fd8\u4f1a\u518d\u6765\u4f53\u9a8c\uff01\u670b\u53cb\u4eec\uff0c\u5feb\u5feb\u52a0\u5165\u56e2\u8f66\u7f51\u7684\u6000\u62b1\u6765\u5427\uff01', u'score': 5, u'commentPicList': [], u'fine': False}, {u'userName': u'\u738b\u56e2\u5458', u'commentDate': u'2015-11-24', u'memberPic': u'http://t.pic.tuanche.com/umapi/head/default/tuantuan05.png', u'content': u'\u633a\u597d\uff0c\u5c31\u770b\u4ea4\u8f66\u901f\u5ea6\u4e86\u3002', u'score': 5, u'commentPicList': [], u'fine': False}, {u'userName': u'\u738b\u56e2\u5458', u'commentDate': u'2015-11-24', u'memberPic': u'http://t.pic.tuanche.com/umapi/head/default/tuantuan05.png', u'content': u'\u633a\u597d\uff0c\u5c31\u770b\u4ea4\u8f66\u901f\u5ea6\u4e86\u3002', u'score': 5, u'commentPicList': [], u'fine': False}, {u'userName': u'J***8', u'commentDate': u'2015-11-09', u'memberPic': u'http://t.pic.tuanche.com/umapi/head/default/tuantuan01.png', u'content': u'\u674e\u56e2\u76f8\u5f53\u7ed9\u529b\uff0c\u4ef7\u683c\u7ed9\u529b\uff0c\u4eba\u4e5f\u7ed9\u529b\uff0c\u603b\u4e4b\u662f\u4e00\u6b21\u975e\u5e38\u5feb\u4e50\u7684\u4e70\u8f66\u8fc7\u7a0b', u'score': 5, u'commentPicList': [], u'fine': False}], u'shopScore': 4.6, u'salerScore': 4.8, u'commentTotal': 4.8, u'priceScore': 4.5, u'offset': 2}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_group_buy_info: 获取周末团详情信息</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_hot_style: 获取热门城市列表</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_index: 获取首页新车买卖，二手车拍卖，团车养车接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        pass</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.19: {u'msg': u'', u'code': 10000, u'result': {u'nc': [{u'name': u'\u5e95\u4ef7\u8d2d\u8f66', u'weight': 0, u'show': False, u'url': u'', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_gouche.png', u'modules': 1, u'is_ng': 0, u'type': 1, u'is_login': 0}, {u'name': u'\u6c7d\u8f66\u8d37\u6b3e', u'weight': 0, u'show': False, u'url': u'http://t.umapi.tuanche.com/h5/loan?1=1&amp;time=1456134275041&amp;sign=db35eb2d2685ae0dbb211266e4178aa9', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_daikuan.png', u'modules': 3, u'is_ng': 1, u'type': 1, u'is_login': 0}, {u'name': u'\u6c7d\u8f66\u4fdd\u517b', u'weight': 0, u'show': False, u'url': u'http://t.m2.tuanche.com/yangche/bj/m?channel=672&amp;source=6', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_baoyang.png', u'modules': 4, u'is_ng': 0, u'type': 2, u'is_login': 0}, {u'name': u'\u6c7d\u8f66\u8d34\u819c', u'weight': 0, u'show': False, u'url': u'http://t.m2.tuanche.com/yangche/bj/wx/beauty/beautyGoodsList/3/2?channel=672&amp;source=6', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_tiemo.png', u'modules': 6, u'is_ng': 0, u'type': 2, u'is_login': 0}, {u'name': u'\u52a0\u6cb9\u5145\u503c', u'weight': 0, u'show': False, u'url': u'http://t.m2.tuanche.com/yangche/wx/fuelcard/index/?channel=672&amp;source=6', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_jiayou.png', u'modules': 11, u'is_ng': 0, u'type': 2, u'is_login': 0}, {u'name': u'\u4fdd\u9669\u6bd4\u4ef7', u'weight': 0, u'show': False, u'url': u'http://t.m2.tuanche.com/yangche/bj/wx/insurance/sales/index?channel=672&amp;source=6', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_baoxian.png', u'modules': 12, u'is_ng': 0, u'type': 2, u'is_login': 0}, {u'name': u'\u9ad8\u4ef7\u5356\u8f66', u'weight': 0, u'show': False, u'url': u'', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_maiche.png', u'modules': 7, u'is_ng': 0, u'type': 3, u'is_login': 0}, {u'name': u'\u65e7\u8f66\u4f30\u503c', u'weight': 0, u'show': False, u'url': u'', u'pic': u'http://t.pic.tuanche.com/icon/index/and/app4.0/icon_jiuche.png', u'modules': 8, u'is_ng': 0, u'type': 3, u'is_login': 0}]}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_message: 获取放假公告接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        pass</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.20: {u'msg': u'', u'code': 10000, u'result': {u'isShow': 0}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_model_map: 获取随时购选择车型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_model_select: 获取随时购车型接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: {u'code': 10000, u'result': {u'style': {u'isNew': 0, u'factoryPrice': u'29.38', u'price': u'', u'priceSuffix': u'\u4e07', u'ecLable': u'', u'createTime': u'2014-09-29 14:56:32.0', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'adInfo': u'', u'prefix': u'\u5df2\u6709', u'logo': u'http://t.pic.tuanche.com/car/20150811/14392633245233152_o.jpg', u'styleName': u'\u7d22\u7eb3\u5854(\u8fdb\u53e3)', u'id': 13897}, u'hint': 487592, u'ssg_order_style': [{u'code': u'1', u'name': u'\u65b0\u8f66\u5168\u6b3e'}, {u'code': u'2', u'name': u'\u65b0\u8f66\u8d37\u6b3e'}, {u'code': u'3', u'name': u'\u7f6e\u6362\u5168\u6b3e'}, {u'code': u'4', u'name': u'\u7f6e\u6362\u8d37\u6b3e'}], u'brand': {u'pinyin': u'Hyundai', u'brandName': u'\u73b0\u4ee3\uff08\u8fdb\u53e3\uff09', u'brandId': 43}, u'firmBrand': {u'logo': u'http://t.pic.tuanche.com/car/20150420/14295243711442986_s.jpg', u'pinyin': u'xiandai', u'penname': u'X', u'id': 4, u'name': u'\u73b0\u4ee3'}, u'ssg_order_time': [{u'code': u'1', u'name': u'7\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'2', u'name': u'14\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'3', u'name': u'30\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'4', u'name': u'30\u5929\u540e\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'5', u'name': u'\u77ed\u671f\u5185\u6682\u65e0\u8d2d\u8f66\u8ba1\u5212'}], u'model': {u'modelName': u'Hybrid', u'level': u'', u'factoryPrice': u'', u'isNew': 0, u'speedBox': u'', u'createTime': u'2015-03-17 11:08:34.0', u'factoryPriceNoWan': u'', u'year': u'2011', u'id': 122}}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_model_year: 获取车款年份列表</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: {u'msg': u'', u'code': 10000, u'result': [u'2011', u'2013', u'2015']}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_new_style: 获取最新车型接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: {u'msg': u'', u'code': 10000, u'result': []}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_order_num: 获取询价人数接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        pass</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.25: {u'msg': u'\u6210\u529f', u'code': 10000, u'result': {u'num': 788}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_queryCityByLatitude: 经纬度获取城市接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.26')" >
+        pass</a>
+
+    <div id='div_pt1.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.26: {u'msg': u'', u'code': 10000, u'result': {u'pinyin': u'beijing', u'py': u'bj', u'id': 10, u'name': u'\u5317\u4eac'}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_style_map: 获取当前城市的热门车型</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.27')" >
+        pass</a>
+
+    <div id='div_pt1.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.27: {u'msg': u'', u'code': 10000, u'result': [{u'styleList': [{u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:7.59-15.89\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20151106/14468007816977266_s.jpg', u'id': 11, u'ecLable': u'', u'carModelPrices': u'2643,11.59;2636,7.59;2637,8.69;18607,11.79;2639,11.09;2646,15.89;2638,9.89;2640,9.19;2641,10.39;2642,11.89;18606,10.59;17930,14.69;', u'content': u'\u5df2\u67091511\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'7.59-15.89', u'isBuy': 1, u'brandId': 2, u'manNum': 1511, u'styleName': u'Polo', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'7.59', u'levelStr': u'1.4L 1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:8.49-13.68\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20151124/14483384022974307_s.jpg', u'id': 32051, u'ecLable': u'', u'carModelPrices': u'19795,11.38;19791,9.99;19794,11.88;19790,8.99;19788,8.49;19793,11.38;19789,9.88;19797,13.68;19796,12.38;19792,10.38;', u'content': u'\u5df2\u6709166\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'8.49-13.68', u'isBuy': 1, u'brandId': 2, u'manNum': 166, u'styleName': u'\u6851\u5854\u7eb3\xb7\u5c1a\u7eb3', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'8.49', u'levelStr': u'1.4L 1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:9.69-13.89\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150813/14394467632206850_s.jpg', u'id': 31508, u'ecLable': u'', u'carModelPrices': u'19782,10.69;19784,11.79;19783,10.79;19781,9.69;19786,13.29;19787,13.89;19785,12.69;', u'content': u'\u5df2\u6709438\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'9.69-13.89', u'isBuy': 1, u'brandId': 2, u'manNum': 438, u'styleName': u'\u6851\u5854\u7eb3\xb7\u6d69\u7eb3', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'9.69', u'levelStr': u'1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:10.99-16.59\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150910/14418811540779692_s.jpg', u'id': 10, u'ecLable': u'', u'carModelPrices': u'19984,14.69;19983,13.29;19987,10.99;19978,12.19;19980,13.69;15641,15.69;19985,14.59;19981,14.99;15644,16.59;19982,14.29;19986,15.99;19979,12.49;15638,15.19;15645,14.99;', u'content': u'\u5df2\u67095721\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'10.99-16.59', u'isBuy': 1, u'brandId': 2, u'manNum': 5721, u'styleName': u'\u6717\u9038', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'10.99', u'levelStr': u'1.2T 1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:11.29-16.39\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150805/1438762751768534_s.jpg', u'id': 4481, u'ecLable': u'', u'carModelPrices': u'13229,15.89;13227,14.99;13218,11.59;19996,15.29;13228,16.39;19995,13.99;13225,15.09;13220,12.89;13219,12.79;19994,12.79;13226,15.99;19993,12.49;19997,13.59;13223,14.89;20000,16.29;19998,14.99;13224,13.69;19999,14.89;13221,14.09;19992,11.29;13222,15.29;', u'content': u'\u5df2\u67091402\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'11.29-16.39', u'isBuy': 1, u'brandId': 2, u'manNum': 1402, u'styleName': u'\u6717\u884c', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'11.29', u'levelStr': u'1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:13.98-19.68\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20141027/14143996798688330_s.jpg', u'id': 9, u'ecLable': u'', u'carModelPrices': u'14608,18.68;14606,19.58;14607,17.28;14605,17.18;14604,15.78;14609,19.68;14603,13.98;', u'content': u'\u5df2\u67092310\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'13.98-19.68', u'isBuy': 1, u'brandId': 2, u'manNum': 2310, u'styleName': u'\u9014\u5b89', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'13.98', u'levelStr': u'1.4T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:14.59-21.39\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150805/14387612750558793_s.jpg', u'id': 30861, u'ecLable': u'', u'carModelPrices': u'15549,21.39;15548,19.49;15547,19.99;15546,18.39;15545,16.99;15544,15.99;15543,14.59;', u'content': u'\u5df2\u6709850\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'14.59-21.39', u'isBuy': 1, u'brandId': 2, u'manNum': 850, u'styleName': u'\u51cc\u6e21', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'14.59', u'levelStr': u'1.4T  1.8T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:14.89-17.19\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20151123/1448248810893765_s.jpg', u'id': 12887, u'ecLable': u'', u'carModelPrices': u'14227,15.79;21195,14.89;21196,16.19;21197,15.89;21198,17.19;', u'content': u'\u5df2\u6709612\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'14.89-17.19', u'isBuy': 0, u'brandId': 2, u'manNum': 612, u'styleName': u'\u6717\u5883', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'14.89', u'levelStr': u'1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:18.38-32.28\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150813/14394282209992337_s.jpg', u'id': 8, u'ecLable': u'', u'carModelPrices': u'20225,21.88;15972,21.28;20219,18.38;20220,19.48;20226,23.98;15974,20.38;15976,22.18;20227,26.98;15975,21.88;15969,18.38;20228,25.48;15984,31.08;20230,31.08;20224,20.38;15983,28.48;15978,23.98;15982,25.78;20223,21.58;15971,20.88;20229,28.48;15979,24.28;20222,21.28;15981,25.48;20231,32.28;15985,32.28;15970,19.48;15980,26.98;15973,21.58;20221,20.88;', u'content': u'\u5df2\u67093774\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'18.38-32.28', u'isBuy': 1, u'brandId': 2, u'manNum': 3774, u'styleName': u'\u5e15\u8428\u7279', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'18.38', u'levelStr': u'1.4T 1.8T 2.0T 3.0L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:18.38-32.28\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150812/14393727826675672_s.jpg', u'id': 336, u'ecLable': u'', u'carModelPrices': u'16707,21.28;16704,18.38;16717,25.78;16710,21.88;16708,21.58;16718,28.48;16719,31.08;16712,23.38;16705,19.48;16711,22.18;16706,20.88;16720,32.28;16714,24.28;16713,23.98;16709,20.38;16716,25.48;16715,26.98;', u'content': u'\u5df2\u67094925\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'18.38-32.28', u'isBuy': 1, u'brandId': 2, u'manNum': 4925, u'styleName': u'\u65b0\u5e15\u8428\u7279', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'18.38', u'levelStr': u'1.4T 1.8T 2.0T 3.0L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:19.98-31.58\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150813/14394429426658260_s.jpg', u'id': 7, u'ecLable': u'', u'carModelPrices': u'14708,25.48;20218,25.38;14711,29.18;14712,31.58;14709,25.98;14700,19.98;16657,22.58;14710,27.68;14699,19.98;14704,23.78;14702,21.18;', u'content': u'\u5df2\u67096762\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'19.98-31.58', u'isBuy': 1, u'brandId': 2, u'manNum': 6762, u'styleName': u'\u9014\u89c2', u'firmBrandId': 1, u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'basePrice': u'19.98', u'levelStr': u'1.4T 1.8T 2.0T'}], u'brandName': u'\u4e0a\u6d77\u5927\u4f17', u'brandId': 2}, {u'styleList': [{u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:7.99-13.48\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150812/14393744840826953_s.jpg', u'id': 6, u'ecLable': u'', u'carModelPrices': u'2735,9.83;2745,13.48;2734,9.83;20863,9.56;2733,8.83;2738,11.93;20862,9.56;20860,8.99;20861,8.56;2730,9.28;20865,12.08;2736,10.83;2729,8.28;20859,7.99;2737,10.93;20864,10.56;', u'content': u'\u5df2\u67096441\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'7.99-13.48', u'isBuy': 1, u'brandId': 1, u'manNum': 6441, u'styleName': u'\u6377\u8fbe', u'firmBrandId': 1, u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'basePrice': u'7.99', u'levelStr': u'1.4L 1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:10.48-14.98\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150813/14394502013127546_s.jpg', u'id': 5, u'ecLable': u'', u'carModelPrices': u'15572,13.58;15573,14.98;20095,11.33;20094,11.68;15569,12.63;15565,11.98;20096,12.53;15564,10.78;15567,12.83;15571,14.83;15566,11.63;15570,14.03;20093,10.48;20097,13.58;', u'content': u'\u5df2\u67095151\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'10.48-14.98', u'isBuy': 1, u'brandId': 1, u'manNum': 5151, u'styleName': u'\u5b9d\u6765', u'firmBrandId': 1, u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'basePrice': u'10.48', u'levelStr': u'1.4T 1.6L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:12.19-23.99\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150930/14435908384389854_s.jpg', u'id': 2, u'ecLable': u'', u'carModelPrices': u'14759,12.19;20659,14.09;20656,13.39;20660,15.49;20655,12.19;14761,14.49;20657,14.49;14766,15.49;20658,15.08;18107,15.08;14765,14.09;21065,23.98;20663,15.79;14760,13.39;20664,17.19;20662,18.29;14771,18.29;14767,16.59;20661,16.59;', u'content': u'\u5df2\u67094874\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'12.19-23.99', u'isBuy': 1, u'brandId': 1, u'manNum': 4874, u'styleName': u'\u9ad8\u5c14\u592b', u'firmBrandId': 1, u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'basePrice': u'12.19', u'levelStr': u'1.2T 1.4T 1.6L 2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:13.18-18.58\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150812/14393737255769163_s.jpg', u'id': 4, u'ecLable': u'', u'carModelPrices': u'18006,15.08;18005,13.88;18008,16.08;18011,18.58;18009,15.68;18004,14.38;18010,17.08;18007,14.68;18003,13.18;16420,18.58;', u'content': u'\u5df2\u67097074\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'13.18-18.58', u'isBuy': 1, u'brandId': 1, u'manNum': 7074, u'styleName': u'\u901f\u817e', u'firmBrandId': 1, u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'basePrice': u'13.18', u'levelStr': u'1.4T 1.6L 1.8T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:19.98-29.98\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20150812/14393742198568200_s.jpg', u'id': 3, u'ecLable': u'', u'carModelPrices': u'18018,26.78;18017,24.78;16172,21.98;18014,21.28;16170,19.98;18019,29.98;16168,21.98;16174,20.98;18016,25.28;18015,23.28;', u'content': u'\u5df2\u67096429\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'19.98-29.98', u'isBuy': 1, u'brandId': 1, u'manNum': 6429, u'styleName': u'\u8fc8\u817e', u'firmBrandId': 1, u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'basePrice': u'19.98', u'levelStr': u'1.4T 1.8T 2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:25.28-34.28\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 2, u'logo': u'http://t.pic.tuanche.com/car/20151022/14454758762412870_s.jpg', u'id': 1, u'ecLable': u'', u'carModelPrices': u'20915,34.28;11994,25.28;20912,26.78;20911,26.88;11992,26.88;20910,25.28;11987,34.28;20913,28.38;20914,30.38;11989,28.38;11988,30.38;11990,26.78;', u'content': u'\u5df2\u67091492\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'25.28-34.28', u'isBuy': 1, u'brandId': 1, u'manNum': 1492, u'styleName': u'\u4e00\u6c7d-\u5927\u4f17CC', u'firmBrandId': 1, u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'basePrice': u'25.28', u'levelStr': u'1.8T 2.0T 3.0L'}], u'brandName': u'\u4e00\u6c7d-\u5927\u4f17', u'brandId': 1}, {u'styleList': [{u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:19.18-33.0\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20141027/14143960614123757_s.jpg', u'id': 323, u'ecLable': u'', u'carModelPrices': u'3568,19.18;3574,21.68;3576,32.24;3582,27.48;3583,33.00;20392,28.80;', u'content': u'\u5df2\u6709743\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'19.18-33.0', u'isBuy': 0, u'brandId': 59, u'manNum': 743, u'styleName': u'\u7532\u58f3\u866b', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'19.18', u'levelStr': u'1.2T 1.4T 2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:22.28-39.08\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20150817/14397931373679054_s.jpg', u'id': 326, u'ecLable': u'', u'carModelPrices': u'15334,22.28;15342,25.88;15344,33.98;15349,39.08;', u'content': u'\u5df2\u6709201\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'22.28-39.08', u'isBuy': 0, u'brandId': 59, u'manNum': 201, u'styleName': u'\u5c1a\u9177', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'22.28', u'levelStr': u'1.4T 2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:23.08-27.98\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20141027/14143964957846762_s.jpg', u'id': 341, u'ecLable': u'', u'carModelPrices': u'21187,27.96;21191,23.08;', u'content': u'\u5df2\u670934\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'23.08-27.98', u'isBuy': 0, u'brandId': 59, u'manNum': 34, u'styleName': u'Glof\u65c5\u884c\u8f7f\u8f66', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'23.08', u'levelStr': u'1.4T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:26.56-39.96\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20150812/1439354989030248_s.jpg', u'id': 340, u'ecLable': u'', u'carModelPrices': u'14787,26.56;14788,26.56;14789,28.96;14790,28.96;14791,30.26;14792,35.96;14793,39.96;', u'content': u'\u5df2\u6709771\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'26.56-39.96', u'isBuy': 0, u'brandId': 59, u'manNum': 771, u'styleName': u'\u590f\u6717', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'26.56', u'levelStr': u'1.8T 2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:28.33-28.33\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20141027/14143966330824801_s.jpg', u'id': 343, u'ecLable': u'', u'carModelPrices': u'21190,28.33;', u'content': u'\u5df2\u670923\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'28.33-28.33', u'isBuy': 0, u'brandId': 59, u'manNum': 23, u'styleName': u'CrossGolf', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'28.33', u'levelStr': u'1.4T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:34.98-46.68\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20141027/14143967156632717_s.jpg', u'id': 344, u'ecLable': u'', u'carModelPrices': u'21188,34.98;21189,37.98;', u'content': u'\u5df2\u670923\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'34.98-46.68', u'isBuy': 0, u'brandId': 59, u'manNum': 23, u'styleName': u'Golf\u655e\u7bf7\u8f7f\u8f66', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'34.98', u'levelStr': u'1.4T 2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:36.06-41.6\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20150818/14398663543281212_s.jpg', u'id': 13080, u'ecLable': u'', u'carModelPrices': u'17659,36.06;17660,39.15;17661,38.00;17662,41.60;20136,36.06;', u'content': u'\u5df2\u6709192\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'36.06-41.6', u'isBuy': 0, u'brandId': 59, u'manNum': 192, u'styleName': u'\u8fc8\u817e\uff08\u8fdb\u53e3\uff09', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'36.06', u'levelStr': u'2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:40.78-40.78\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20141027/14143965950057596_s.jpg', u'id': 342, u'ecLable': u'', u'carModelPrices': u'21186,41.38;21192,46.88;21193,40.78;', u'content': u'\u5df2\u6709107\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'40.78-40.78', u'isBuy': 0, u'brandId': 59, u'manNum': 107, u'styleName': u'Golf R', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'40.78', u'levelStr': u'2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:44.28-81.8\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20151009/14443575745541757_s.jpg', u'id': 3685, u'ecLable': u'', u'carModelPrices': u'15587,44.28;15588,49.98;15589,57.38;15590,81.80;21106,51.67;', u'content': u'\u5df2\u6709169\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'44.28-81.8', u'isBuy': 0, u'brandId': 59, u'manNum': 169, u'styleName': u'\u8fc8\u7279\u5a01', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'44.28', u'levelStr': u'2.0T'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:69.5-136.48\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20150806/14388555058262600_s.jpg', u'id': 260, u'ecLable': u'', u'carModelPrices': u'14949,91.65;14950,96.85;14952,80.80;14958,91.56;14959,91.60;14960,96.80;14962,136.48;20016,69.50;20017,76.00;20018,72.00;20019,79.00;20020,82.50;20021,90.00;20022,92.50;20536,73.90;20537,76.90;20538,83.80;20539,94.60;', u'content': u'\u5df2\u6709555\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'69.5-136.48', u'isBuy': 0, u'brandId': 59, u'manNum': 555, u'styleName': u'\u9014\u9510', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'69.5', u'levelStr': u'3.0T 3.6L 4.2L'}, {u'suffix': u'\u4eba\u62a5\u540d', u'isNew': 0, u'factoryPrice': u'\u6307\u5bfc\u4ef7:75.92-188.8\u4e07', u'pricePrefix': u'\u6307\u5bfc\u4ef7\uff1a', u'prefix': u'\u5df2\u6709', u'identify': 1, u'logo': u'http://t.pic.tuanche.com/car/20150805/14387454738134378_s.jpg', u'id': 339, u'ecLable': u'', u'carModelPrices': u'4455,80.92;4456,89.92;4457,75.92;4458,76.32;4459,80.92;4460,81.32;4461,89.92;4462,99.92;4463,146.32;19988,79.58;19989,88.68;19990,99.88;19991,149.98;', u'content': u'\u5df2\u6709118\u4eba\u62a5\u540d', u'adInfo': u'', u'priceSuffix': u'\u4e07', u'price': u'75.92-188.8', u'isBuy': 0, u'brandId': 59, u'manNum': 118, u'styleName': u'\u8f89\u817e', u'firmBrandId': 1, u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'basePrice': u'75.92', u'levelStr': u'3.0L 3.0T 3.6L 4.2L'}], u'brandName': u'\u8fdb\u53e3\u5927\u4f17', u'brandId': 59}]}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_subscribe: 订阅提醒开团接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.28')" >
+        pass</a>
+
+    <div id='div_pt1.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.28: {u'msg': u'\u5df2\u6210\u529f\u63d0\u9192', u'code': 10000, u'result': u''}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_tc_activity: 获取团车会接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.29')" >
+        pass</a>
+
+    <div id='div_pt1.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.29: {u'msg': u'\u6210\u529f', u'code': 10000, u'result': {u'addressDesc': u'', u'title': u'\u53ea\u6709\u4f60\u60f3\u4e0d\u5230', u'address': u'\u5eca\u574a\u5e02\u70b9\u70b9\u53bb', u'brandLogo': u'', u'addressNumber': u'116.287433, 39.938621', u'brandNames': [u'\u5965\u8fea(\u8fdb\u53e3)', u'\u6bd4\u4e9a\u8fea', u'\u6807\u81f4\uff08\u8fdb\u53e3\uff09', u'\u5317\u6c7d\u5a01\u65fa', u'\u4e1c\u98ce\u65e5\u4ea7'], u'activityUrl': u'', u'id': 147, u'headUrl': u'http://t.pic.tuanche.com/zhuanti/20160215/14555259844972999.jpg'}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_top_brand: 获取每个城市下的热门品牌</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_zmt_select: 获取周末团完善信息页面选择项接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        pass</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.31: {u'msg': u'', u'code': 10000, u'result': {u'zmt_buy_time': [{u'name': u'\u4e0d\u786e\u5b9a', u'value': u'0'}, {u'name': u'30\u5929\u4ee5\u5185', u'value': u'2'}], u'zmt_buy_type': [{u'name': u'\u7f6e\u6362', u'value': u'1'}, {u'name': u'\u6447\u53f7', u'value': u'2'}, {u'name': u'\u6447\u53f7\u4e2d', u'value': u'10'}, {u'name': u'\u5916\u5730\u8d2d\u8f66', u'value': u'3'}, {u'name': u'\u65e7\u8f66\u5df2\u5356', u'value': u'14'}]}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_zmt_ssg_select: 获取周末团完善信息接口</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.32')" >
+        pass</a>
+
+    <div id='div_pt1.32' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.32').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.32: {u'msg': u'\u6210\u529f', u'code': 10000, u'result': {u'ssg_order_style': [{u'code': u'1', u'name': u'\u65b0\u8f66\u5168\u6b3e'}, {u'code': u'2', u'name': u'\u65b0\u8f66\u8d37\u6b3e'}, {u'code': u'3', u'name': u'\u7f6e\u6362\u5168\u6b3e'}, {u'code': u'4', u'name': u'\u7f6e\u6362\u8d37\u6b3e'}], u'ssg_order_time': [{u'code': u'1', u'name': u'7\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'2', u'name': u'14\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'3', u'name': u'30\u5929\u5185\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'4', u'name': u'30\u5929\u540e\u5230\u5e97\u8d2d\u8f66'}, {u'code': u'5', u'name': u'\u77ed\u671f\u5185\u6682\u65e0\u8d2d\u8f66\u8ba1\u5212'}], u'hint': 487592}}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>32</td>
+    <td>31</td>
+    <td>1</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
